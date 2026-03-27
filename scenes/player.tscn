@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://cb5xa4f3ws368"]
 
 [ext_resource type="Texture2D" uid="uid://cewj5bkrutv8f" path="res://assets/player.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://d3i4hjhq6rw32" path="res://scripts/player.gd" id="1_g2els"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 
 [node name="Player" type="CharacterBody2D" unique_id=1863722113]
+script = ExtResource("1_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1717358691]
 texture = ExtResource("1_3vyb7")
