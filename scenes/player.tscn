@@ -24,6 +24,22 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.099999994, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
 [sub_resource type="Animation" id="Animation_qhqgy"]
 resource_name = "walk_right"
 length = 0.7
@@ -44,6 +60,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
 _data = {
 &"RESET": SubResource("Animation_g2els"),
+&"hit": SubResource("Animation_dqkch"),
 &"walk_right": SubResource("Animation_qhqgy")
 }
 
@@ -63,6 +80,7 @@ script = ExtResource("1_g2els")
 z_index = 1
 texture = ExtResource("2_g2els")
 hframes = 8
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=545979335]
 z_index = 1
