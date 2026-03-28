@@ -1,6 +1,7 @@
 extends Node2D
 
 
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
@@ -17,6 +18,7 @@ var collected: bool = false
 var tween
 var tween_2
 var loot_data: Item
+
 
 
 func _ready() -> void:
@@ -47,6 +49,7 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	
 	if body.is_in_group("player"):
 		
 		if collected: return
@@ -64,6 +67,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		tween_2.tween_property(self, "scale", Vector2(0.0, 0.0), 0.1)
 		tween_2.set_trans(Tween.TRANS_SINE)
 		await tween.finished
+		
 		queue_free()
 
 

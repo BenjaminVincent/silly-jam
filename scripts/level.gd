@@ -1,12 +1,13 @@
 extends Node2D
 
+
+
 @onready var forground: TileMapLayer = $Forground
 @onready var background: TileMapLayer = $Background
 
-
 var scroll_speed = 40
-
 var rock_tile = Vector2i(14, 2)
+
 
 
 func _process(delta):
@@ -16,8 +17,9 @@ func _process(delta):
 
 func _ready() -> void:
 	randomize()
-	#forground.set_cell(Vector2i(37, 10), 0, Vector2i(14, 2))
+	
 	#spawn_rocks(60)
+	
 	spawn_enemy("slime", 4)
 	spawn_enemy("blue_slime", 4)
 
@@ -51,6 +53,7 @@ func spawn_enemy(type: String, n: int, time_between: float = 0.8):
 
 
 func spawn_rocks(n: int) -> void:
+
 	for i in range(0, n):
 		var x_val = randi_range(15, 200)
 		var y_val = randi_range(5, 16)

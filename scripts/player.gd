@@ -1,17 +1,19 @@
 extends CharacterBody2D
 
+
+
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-
 
 var projectile_speed = 300
 var movement_speed = 100
 var spawn_pos = global_position
 var buffer = Vector2(25, 10)
-
-
 var inventory: Dictionary = {}
+
+
 
 func _ready() -> void:
 	add_to_group("player")
@@ -23,6 +25,7 @@ func get_input():
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
 	velocity = input_dir * movement_speed
+
 
 
 func _physics_process(delta):
@@ -37,9 +40,11 @@ func _physics_process(delta):
 	global_position = global_position.clamp(rect.position + bounds, rect.end - bounds)
 
 
+
 func _input(event):
 	if event.is_action_pressed("shoot"):
 		shoot()
+
 
 
 func shoot():
