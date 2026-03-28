@@ -17,16 +17,21 @@ func _process(delta):
 func _ready() -> void:
 	randomize()
 	#forground.set_cell(Vector2i(37, 10), 0, Vector2i(14, 2))
-	#spawn_rocks(60)
-	spawn_enemy(4)
+	spawn_rocks(60)
+	spawn_enemy("slime", 4)
+	spawn_enemy("blue_slime", 4)
 
 
 
-func spawn_enemy(n: int, time_between: float = 0.8):
+func spawn_enemy(type: String, n: int, time_between: float = 0.8):
+	
+	var path = "res://scenes/enemies/" + type + ".tscn"
+	
+	if not path: return
 	
 	for i in range(0, n):
 		
-		var enemy = load("res://scenes/enemies/slime.tscn").instantiate()
+		var enemy = load(path).instantiate()
 		
 		var y_val = randi_range(5, 16)
 		var x_val = randi_range(41, 43)

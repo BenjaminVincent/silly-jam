@@ -26,10 +26,13 @@ func _ready() -> void:
 		gold = loot_data.gold
 	
 	tween = create_tween()
+	
 	scale = Vector2(0.6, 0.5)
 	tween.tween_property(self, "scale", Vector2(1.3, 1.4), 0.1)
 	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
 	tween.set_trans(Tween.TRANS_SINE)
+
+
 
 func _process(delta):
 	position += Vector2(-40, 0) * delta
@@ -43,15 +46,21 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		audio_stream_player.play()
+		
+		
+		if not audio_stream_player.is_playing():
+			audio_stream_player.play()
 		body.add_to_inventory(loot_name, gold)
+		
 		tween_2 = create_tween()
 		scale = Vector2(1.0, 1.0)
 		tween_2.tween_property(self, "scale", Vector2(1.3, 1.4), 0.1)
 		tween_2.tween_property(self, "scale", Vector2(0.0, 0.0), 0.1)
 		tween_2.set_trans(Tween.TRANS_SINE)
 		await tween.finished
+		
 		hide()
+
 
 
 func _on_audio_stream_player_finished() -> void:

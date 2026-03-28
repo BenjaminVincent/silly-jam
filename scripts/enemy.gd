@@ -10,7 +10,7 @@ var loot
 
 var speed = 30
 
-var health = 3
+@export var health = 3
 
 var can_take_damage = true
 
