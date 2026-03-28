@@ -7,7 +7,7 @@ extends CharacterBody2D
 var projectile_speed = 300
 var movement_speed = 100
 var spawn_pos = global_position
-var horz_limit = 100
+var horz_limit = 500
 
 func _ready() -> void:
 	
@@ -19,8 +19,10 @@ func _ready() -> void:
 func get_input():
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
-	#if global_position.x - spawn_pos.x >100:
-		#input_dir.x = 0
+	if global_position.x - spawn_pos.x > horz_limit:
+		input_dir.x = -1
+	elif global_position.x - spawn_pos.x < -horz_limit:
+		input_dir.x = 1
 	
 	velocity = input_dir * movement_speed
 
@@ -28,7 +30,7 @@ func get_input():
 
 func _physics_process(delta):
 	
-	#get_input()
+	get_input()
 	
 	move_and_collide(self.velocity * delta)
 	
