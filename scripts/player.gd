@@ -2,12 +2,15 @@ extends CharacterBody2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var projectile: CharacterBody2D = $"."
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
 
 
 var projectile_speed = 300
 var movement_speed = 100
 var spawn_pos = global_position
 var horz_limit = 500
+var sprite_width = 0
 
 func _ready() -> void:
 	
