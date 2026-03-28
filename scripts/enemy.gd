@@ -1,17 +1,21 @@
 extends CharacterBody2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
+
+
 
 @export var loot_drop: Item
 @export var health = 3
 @export var speed = 30
 @export var drop_chance = 0.5
 
-var loot
 
+var loot
+var player
 var can_take_damage = true
+var follow_delay = 0.05
 
 
 
@@ -20,7 +24,7 @@ func _ready() -> void:
 	add_to_group("enemies")
 
 	animation_player.play("walk_left")
-
+	player = get_tree().get_first_node_in_group("player")
 	velocity.x = -speed
 
 
@@ -28,7 +32,12 @@ func _ready() -> void:
 func _physics_process(delta):
 	
 	move_and_collide(self.velocity * delta)
-
+	
+	if player:
+		var direction = (player.global_position - global_position).normalized()
+		#velocity = direction * speed
+		velocity = lerp(velocity, direction * speed, follow_delay)
+	
 	if position.x < - 32:
 		queue_free()
 

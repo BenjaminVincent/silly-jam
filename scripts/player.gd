@@ -18,9 +18,11 @@ var can_take_damage = true
 
 
 
+
 func _ready() -> void:
 	add_to_group("player")
 	animation_player.play("walk_right")
+
 
 
 
@@ -29,6 +31,10 @@ func get_input():
 
 	velocity = input_dir * movement_speed
 
+
+func _input(event):
+	if event.is_action_pressed("shoot"):
+		shoot()
 
 
 func _physics_process(delta):
@@ -49,12 +55,6 @@ func _physics_process(delta):
 	var bounds = collision_shape_2d.shape.size + buffer
 	
 	global_position = global_position.clamp(rect.position + bounds, rect.end - bounds)
-
-
-
-func _input(event):
-	if event.is_action_pressed("shoot"):
-		shoot()
 
 
 
