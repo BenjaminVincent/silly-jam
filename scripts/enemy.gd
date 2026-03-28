@@ -23,6 +23,7 @@ func _ready() -> void:
 
 	add_to_group("enemies")
 
+	
 	animation_player.play("walk_left")
 	player = get_tree().get_first_node_in_group("player")
 	velocity.x = -speed
@@ -32,6 +33,8 @@ func _ready() -> void:
 func _physics_process(delta):
 	
 	move_and_collide(self.velocity * delta)
+	
+	z_index = global_position.y
 	
 	if player:
 		var direction = (player.global_position - global_position).normalized()
