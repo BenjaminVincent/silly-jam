@@ -89,6 +89,7 @@ script = ExtResource("1_wvt6j")
 loot_drop = ExtResource("2_wvt6j")
 health = 5
 speed = 60
+drop_chance = 0.33
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1730519767]
 texture = ExtResource("3_wvt6j")
