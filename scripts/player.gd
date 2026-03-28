@@ -100,6 +100,9 @@ func take_damage(value: int) -> void:
 	if not can_take_damage: return
 	
 	can_take_damage = false
+	set_collision_mask_value(2, false)
+	set_collision_layer_value(1, false)
+	#collision_shape_2d.set_deferred("disabled", true)
 	
 	animation_player.play("hit")
 	audio_stream_player.play()
@@ -113,6 +116,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			if health > 0:
 				animation_player.play("walk_right")
 				can_take_damage = true
+				set_collision_mask_value(2, true)
+				set_collision_layer_value(1, true)
 			else:
 				dead = true
 				level.scroll_speed = 0

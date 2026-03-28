@@ -85,6 +85,8 @@ streams_count = 1
 stream_0/stream = ExtResource("4_b58ev")
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1171792634]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_4h4y0")
 loot_drop = ExtResource("2_b58ev")
 
