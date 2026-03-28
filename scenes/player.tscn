@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3i4hjhq6rw32" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://7kcfx66bhgdx" path="res://assets/Human_Soldier_Sword_Shield_Walk-Sheet.png" id="2_g2els"]
-[ext_resource type="Script" path="res://scripts/player-line.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://dw0klmflrd1bt" path="res://scripts/player-line.gd" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 

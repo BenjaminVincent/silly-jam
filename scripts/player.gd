@@ -30,3 +30,14 @@ func _physics_process(delta):
 	
 	move_and_collide(velocity * delta)
 	
+
+func _process(_delta):
+	if Input.is_action_just_pressed("ui_accept"):
+		shoot()
+		
+
+
+func shoot():
+	var p = projectile.instantiate()
+	add_child(p)
+	p.transform = $Muzzle.transform
