@@ -131,14 +131,15 @@ texture = ExtResource("1_2q6dc")
 10:10/0 = 0
 11:10/0 = 0
 12:10/0 = 0
-17:0/size_in_atlas = Vector2i(4, 5)
-17:0/0 = 0
 17:5/size_in_atlas = Vector2i(2, 3)
 17:5/0 = 0
+17:5/0/texture_origin = Vector2i(-8, 0)
 19:6/size_in_atlas = Vector2i(2, 2)
 19:6/0 = 0
-14:5/size_in_atlas = Vector2i(2, 1)
-14:5/0 = 0
+19:6/0/texture_origin = Vector2i(-8, -8)
+17:0/size_in_atlas = Vector2i(4, 5)
+17:0/0 = 0
+17:0/0/texture_origin = Vector2i(-8, 0)
 
 [sub_resource type="TileSet" id="TileSet_lnu2h"]
 physics_layer_0/collision_layer = 1
