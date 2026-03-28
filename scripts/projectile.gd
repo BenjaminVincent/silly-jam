@@ -32,9 +32,8 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("body: ", body)
 
 	if body.is_in_group("enemies"):
-		#body.take_damage(10)
+		body.take_damage(1)
 		print("collided with enemy")
 		queue_free()
