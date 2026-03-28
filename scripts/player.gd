@@ -12,7 +12,7 @@ var buffer = Vector2(25, 10)
 
 
 func _ready() -> void:
-	
+	add_to_group("player")
 	animation_player.play("walk_right")
 
 

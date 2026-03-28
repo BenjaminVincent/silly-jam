@@ -20,5 +20,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		if body.health >= 0:
 			body.take_damage(1)
-			print("collided with enemy")
 		queue_free()

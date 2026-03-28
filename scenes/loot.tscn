@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bfom4410f56qv"]
+
+[ext_resource type="Script" uid="uid://dyw3mwv7kt6si" path="res://scripts/loot.gd" id="1_o0pg5"]
+[ext_resource type="Texture2D" uid="uid://de2x2xmlpwhwt" path="res://assets/slime_jelly.png" id="1_xofgn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0pg5"]
+
+[node name="LootDrop" type="Node2D" unique_id=1232429410]
+script = ExtResource("1_o0pg5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=458910463]
+texture = ExtResource("1_xofgn")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2112352893]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=472533526]
+shape = SubResource("RectangleShape2D_o0pg5")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

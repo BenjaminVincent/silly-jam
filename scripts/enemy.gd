@@ -8,6 +8,9 @@ var health = 3
 
 var can_take_damage = true
 
+var drop_chance = 0.99
+
+var loot
 
 
 func _ready() -> void:
@@ -30,6 +33,7 @@ func take_damage(value: int) -> void:
 	if not can_take_damage: return
 	
 	can_take_damage = false
+	
 	animation_player.play("hit")
 	
 	health -= value
@@ -48,4 +52,14 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				can_take_damage = true
 				animation_player.play("walk_left")
 		"death":
-			queue_free()
+			_death()
+
+
+func _death() -> void:
+	if randf() < drop_chance:
+		loot = load("res://scenes/loot.tscn").instantiate()
+		loot.position = position
+		print("item dropping!")
+		get_parent().add_child(loot)
+		
+	queue_free()
