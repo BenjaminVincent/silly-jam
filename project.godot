@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Silly Jam"
-run/main_scene="uid://c5s1iq2bl81r5"
+run/main_scene="uid://c2ii5tb06hcb4"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -29,3 +29,5 @@ window/stretch/mode="canvas_items"
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
