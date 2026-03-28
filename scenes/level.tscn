@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ded8lror0wkww" path="res://assets/free_pixel_16_woods.png" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://bwrcvnmiootxf" path="res://scripts/level.gd" id="1_w7c3h"]
-[ext_resource type="PackedScene" uid="uid://b7qgixajgbj5x" path="res://scenes/player.tscn" id="3_w8frs"]
+[ext_resource type="PackedScene" uid="uid://cb5xa4f3ws368" path="res://scenes/player.tscn" id="3_w8frs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_2q6dc")
@@ -175,3 +175,5 @@ tile_set = SubResource("TileSet_lnu2h")
 
 [node name="Player" parent="." unique_id=1863722113 instance=ExtResource("3_w8frs")]
 position = Vector2(65, 171)
+
+[node name="Line2D" type="Line2D" parent="." unique_id=250608121]
