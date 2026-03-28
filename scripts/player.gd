@@ -18,11 +18,12 @@ func _ready() -> void:
 
 func get_input():
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	
-	if global_position.x - spawn_pos.x > horz_limit:
-		input_dir.x = -1
-	elif global_position.x - spawn_pos.x < -horz_limit:
-		input_dir.x = 1
+	#print("player position: " global_position)
+	#if global_position.x - spawn_pos.x > horz_limit:
+		#input_dir.x = -1
+		#print("too far right")
+	#elif global_position.x - spawn_pos.x < -horz_limit:
+		#input_dir.x = 1
 	
 	velocity = input_dir * movement_speed
 
@@ -34,17 +35,24 @@ func _physics_process(delta):
 	
 	move_and_collide(self.velocity * delta)
 	
+	var rect = get_viewport_rect()
+	
+	global_position = global_position.clamp(rect.position, rect.end)
+
 
 func _input(event):
 	if event.is_action_pressed("shoot"):
 		shoot()
 
 func shoot():
+	
 	var projectile = load("res://scenes/projectile.tscn").instantiate()
 	
-	add_child(projectile)
+	get_tree().root.get_node_or_null("Game").add_child(projectile)
 	
-	projectile.global_position = Vector2(global_position.x, global_position.y)
+	projectile.global_position = global_position
+	print("shot at: ")
+	print(global_position)
 	
 	var mouse_pos = get_global_mouse_position()
 	var direction = (mouse_pos - global_position).normalized()
