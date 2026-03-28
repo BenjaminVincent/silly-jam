@@ -15,26 +15,36 @@ var buffer = Vector2(25, 10)
 var inventory: Dictionary = {}
 var health = 5
 var can_take_damage = true
+var dead: bool = false
 
+var level
 
 
 
 func _ready() -> void:
 	add_to_group("player")
 	animation_player.play("walk_right")
-
+	level = get_tree().root.get_node_or_null("Game/level")
 
 
 
 func get_input():
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-
+	
+	if dead:
+		velocity = Vector2.ZERO
+		return
 	velocity = input_dir * movement_speed
 
 
+
 func _input(event):
+	
+	if dead: return
+	
 	if event.is_action_pressed("shoot"):
 		shoot()
+
 
 
 func _physics_process(delta):
@@ -72,6 +82,7 @@ func shoot():
 	projectile.velocity = direction * projectile_speed
 
 
+
 func add_to_inventory(item_name, gold) -> void:
 	
 	if inventory.has(item_name):
@@ -80,6 +91,8 @@ func add_to_inventory(item_name, gold) -> void:
 		inventory[item_name] = { "quantity": 1, "gold": gold }
 	
 	print("inventory: ", inventory)
+
+
 
 func take_damage(value: int) -> void:
 	if not can_take_damage: return
@@ -95,6 +108,12 @@ func take_damage(value: int) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		"hit":
-			animation_player.play("walk_right")
-			can_take_damage = true
-			
+			if health > 0:
+				animation_player.play("walk_right")
+				can_take_damage = true
+			else:
+				dead = true
+				level.scroll_speed = 0
+				animation_player.play("death")
+		"death":
+			print("player has died")

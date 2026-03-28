@@ -18,7 +18,7 @@ func _process(delta):
 func _ready() -> void:
 	randomize()
 	
-	#spawn_rocks(60)
+	spawn_rocks(60)
 	
 	spawn_enemy("slime", 4)
 	spawn_enemy("blue_slime", 4)
