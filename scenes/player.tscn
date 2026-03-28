@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d3i4hjhq6rw32" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://7kcfx66bhgdx" path="res://assets/Human_Soldier_Sword_Shield_Walk-Sheet.png" id="2_g2els"]
-[ext_resource type="Script" path="res://scripts/player-line.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://dw0klmflrd1bt" path="res://scripts/player-line.gd" id="3_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://bq2qd6gnb8ftl" path="res://audio/projectile_hit_sound.mp3" id="4_dqkch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(13, 16)
@@ -50,6 +51,11 @@ _data = {
 offsets = PackedFloat32Array(0, 0.5617284, 1)
 colors = PackedColorArray(0.73333335, 0.73333335, 0.73333335, 0, 0, 0, 0, 1, 1, 0, 0, 1)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qlg0r"]
+random_pitch = 1.0905077
+streams_count = 1
+stream_0/stream = ExtResource("4_dqkch")
+
 [node name="Player" type="CharacterBody2D" unique_id=1863722113]
 script = ExtResource("1_g2els")
 
@@ -72,3 +78,6 @@ width = 2.0
 default_color = Color(0.9098039, 0.23137255, 0.23137255, 1)
 gradient = SubResource("Gradient_qhqgy")
 script = ExtResource("3_qhqgy")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1142961664]
+stream = SubResource("AudioStreamRandomizer_qlg0r")

@@ -6,12 +6,16 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var projectile_speed = 300
 var movement_speed = 100
 var spawn_pos = global_position
 var buffer = Vector2(25, 10)
 var inventory: Dictionary = {}
+var has_hit: bool = false
+var health = 5
+var can_take_damage = true
 
 
 
@@ -34,6 +38,22 @@ func _physics_process(delta):
 	
 	move_and_collide(self.velocity * delta)
 	
+	var collision = move_and_collide(velocity * delta)
+	
+	if collision:
+		if collision.get_collider().is_in_group("enemies"):
+			if has_hit: return
+			
+			if health >= 0:
+				if can_take_damage:
+					has_hit = true
+					audio_stream_player.play()
+					take_damage(1)
+					sprite_2d.visible = false
+					#area_2d.set_deferred("monitoring", false)
+				else:
+					queue_free()
+		
 	var rect = get_viewport_rect()
 	var bounds = collision_shape_2d.shape.size + buffer
 	
@@ -61,7 +81,6 @@ func shoot():
 	projectile.velocity = direction * projectile_speed
 
 
-
 func add_to_inventory(item_name, gold) -> void:
 	
 	if inventory.has(item_name):
@@ -70,3 +89,14 @@ func add_to_inventory(item_name, gold) -> void:
 		inventory[item_name] = { "quantity": 1, "gold": gold }
 	
 	print("inventory: ", inventory)
+
+func take_damage(value: int) -> void:
+	
+	if not can_take_damage: return
+	
+	can_take_damage = false
+	
+	#animation_player.play("hit")
+	audio_stream_player.play()
+	health -= value
+	print(health)
