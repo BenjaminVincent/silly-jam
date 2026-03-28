@@ -77,7 +77,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7p1mj"]
-size = Vector2(20, 13)
+size = Vector2(15, 10)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ankfk"]
 random_pitch = 1.122462
@@ -98,7 +98,7 @@ root_node = NodePath("../Sprite2D")
 libraries/ = SubResource("AnimationLibrary_4ra3w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=355751531]
-position = Vector2(0, 3.5)
+position = Vector2(0.5, 5)
 shape = SubResource("RectangleShape2D_7p1mj")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2078868885]
