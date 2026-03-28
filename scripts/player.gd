@@ -4,9 +4,8 @@ extends CharacterBody2D
 @onready var projectile: CharacterBody2D = $"."
 
 
-var speed = 100
-
-
+var projectile_speed = 600
+var movement_speed = 100
 
 func _ready() -> void:
 	
@@ -20,24 +19,29 @@ func get_input():
 	
 	input_dir.x = 0
 	
-	velocity = input_dir * speed
+	velocity = input_dir * movement_speed
 
 
 
 func _physics_process(delta):
 	
-	get_input()
+	#get_input()
 	
-	move_and_collide(velocity * delta)
+	move_and_collide(self.velocity * delta)
 	
 
-func _process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
+func _input(event):
+	if event.is_action_pressed("shoot"):
 		shoot()
-		
-
 
 func shoot():
-	var p = projectile.instantiate()
-	add_child(p)
-	p.transform = $Muzzle.transform
+	var projectile = load("res://scenes/projectile.tscn").instantiate()
+	
+	add_child(projectile)
+	
+	projectile.global_position = Vector2(global_position.x, global_position.y)
+	
+	var mouse_pos = get_global_mouse_position()
+	var direction = (mouse_pos - global_position).normalized()
+	
+	projectile.velocity = direction * projectile_speed
