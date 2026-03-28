@@ -13,7 +13,6 @@ var movement_speed = 100
 var spawn_pos = global_position
 var buffer = Vector2(25, 10)
 var inventory: Dictionary = {}
-var has_hit: bool = false
 var health = 5
 var can_take_damage = true
 
@@ -42,18 +41,10 @@ func _physics_process(delta):
 	
 	if collision:
 		if collision.get_collider().is_in_group("enemies"):
-			if has_hit: return
-			
-			if health >= 0:
-				if can_take_damage:
-					has_hit = true
-					audio_stream_player.play()
-					take_damage(1)
-					sprite_2d.visible = false
-					#area_2d.set_deferred("monitoring", false)
-				else:
-					queue_free()
-		
+			if can_take_damage: 
+				audio_stream_player.play()
+				take_damage(1)
+	
 	var rect = get_viewport_rect()
 	var bounds = collision_shape_2d.shape.size + buffer
 	
@@ -91,12 +82,19 @@ func add_to_inventory(item_name, gold) -> void:
 	print("inventory: ", inventory)
 
 func take_damage(value: int) -> void:
-	
 	if not can_take_damage: return
 	
 	can_take_damage = false
 	
-	#animation_player.play("hit")
+	animation_player.play("hit")
 	audio_stream_player.play()
 	health -= value
-	print(health)
+
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	match anim_name:
+		"hit":
+			animation_player.play("walk_right")
+			can_take_damage = true
+			
