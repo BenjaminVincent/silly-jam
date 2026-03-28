@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ded8lror0wkww" path="res://assets/free_pixel_16_woods.png" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://bwrcvnmiootxf" path="res://scripts/level.gd" id="1_w7c3h"]
-[ext_resource type="PackedScene" uid="uid://cb5xa4f3ws368" path="res://scenes/player.tscn" id="3_w8frs"]
+[ext_resource type="PackedScene" uid="uid://b7qgixajgbj5x" path="res://scenes/player.tscn" id="3_w8frs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_2q6dc")
@@ -28,6 +28,7 @@ texture = ExtResource("1_2q6dc")
 9:2/0 = 0
 10:2/0 = 0
 11:2/0 = 0
+11:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 12:2/0 = 0
 13:2/0 = 0
 14:2/0 = 0
@@ -46,8 +47,11 @@ texture = ExtResource("1_2q6dc")
 7:3/0 = 0
 9:3/0 = 0
 10:3/0 = 0
+10:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 11:3/0 = 0
+11:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 12:3/0 = 0
+12:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 13:3/0 = 0
 14:3/0 = 0
 15:3/0 = 0
@@ -66,6 +70,7 @@ texture = ExtResource("1_2q6dc")
 9:4/0 = 0
 10:4/0 = 0
 11:4/0 = 0
+11:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 12:4/0 = 0
 13:4/0 = 0
 14:4/0 = 0
@@ -154,6 +159,7 @@ texture = ExtResource("1_2q6dc")
 12:10/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_lnu2h"]
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 
 [node name="level" type="Node2D" unique_id=1070303448]
@@ -168,4 +174,4 @@ tile_map_data = PackedByteArray("AAAzAAwAAAAOAAIAAAApABMAAAALAAMAAAAAAAAAAAALAAM
 tile_set = SubResource("TileSet_lnu2h")
 
 [node name="Player" parent="." unique_id=1863722113 instance=ExtResource("3_w8frs")]
-position = Vector2(497, 169)
+position = Vector2(65, 171)
