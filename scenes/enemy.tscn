@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://0kgakc0olb5"]
+
+[ext_resource type="Texture2D" uid="uid://du2y1m68eg52g" path="res://assets/Monster_Slime_Walk-Sheet.png" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://bu0hky3letw6i" path="res://scripts/enemy.gd" id="1_md0e3"]
+
+[sub_resource type="Animation" id="Animation_7p1mj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_md0e3"]
+resource_name = "walk_left"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ra3w"]
+_data = {
+&"RESET": SubResource("Animation_7p1mj"),
+&"walk_left": SubResource("Animation_md0e3")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7p1mj"]
+size = Vector2(20, 13)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1171792634]
+script = ExtResource("1_md0e3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1730519767]
+texture = ExtResource("1_7p1mj")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=479609913]
+root_node = NodePath("../Sprite2D")
+libraries/ = SubResource("AnimationLibrary_4ra3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=355751531]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_7p1mj")
