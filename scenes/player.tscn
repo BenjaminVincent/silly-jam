@@ -58,7 +58,8 @@ z_index = 1
 texture = ExtResource("2_g2els")
 hframes = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D" unique_id=545979335]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=545979335]
+z_index = 1
 position = Vector2(-1.5, 0)
 shape = SubResource("RectangleShape2D_g2els")
 
