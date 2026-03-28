@@ -45,6 +45,11 @@ _data = {
 &"walk_right": SubResource("Animation_qhqgy")
 }
 
+[sub_resource type="Gradient" id="Gradient_qhqgy"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.14197528, 0.7160494)
+colors = PackedColorArray(0.9098039, 0.23137255, 0.23137255, 1, 0.9098039, 0.23137255, 0.23137255, 0)
+
 [node name="Player" type="CharacterBody2D" unique_id=1863722113]
 script = ExtResource("1_g2els")
 
@@ -64,4 +69,5 @@ libraries/ = SubResource("AnimationLibrary_dqkch")
 closed = true
 width = 2.0
 default_color = Color(0.9098039, 0.23137255, 0.23137255, 1)
+gradient = SubResource("Gradient_qhqgy")
 script = ExtResource("3_qhqgy")
