@@ -18,22 +18,13 @@ func _ready() -> void:
 	randomize()
 	#forground.set_cell(Vector2i(37, 10), 0, Vector2i(14, 2))
 	#spawn_rocks(60)
-	spawn_enemy(20)
-	
+	spawn_enemy(4)
 
-
-
-#func spawn_enemy() -> void:
-	#var enemy = load("res://scenes/enemy.tscn").instantiate()
-	#
 
 
 func spawn_enemy(n: int, time_between: float = 0.8):
 	
-	
 	for i in range(0, n):
-		
-		#var viewport_rect = get_viewport_rect().size
 		
 		var enemy = load("res://scenes/enemy.tscn").instantiate()
 		
@@ -53,9 +44,8 @@ func spawn_enemy(n: int, time_between: float = 0.8):
 		await get_tree().process_frame
 
 
+
 func spawn_rocks(n: int) -> void:
-	# Y can be between 4, 17
-	# X can be between 15, 200
 	for i in range(0, n):
 		var x_val = randi_range(15, 200)
 		var y_val = randi_range(5, 16)
