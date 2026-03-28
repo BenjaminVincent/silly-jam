@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bu0hky3letw6i" path="res://scripts/enemy.gd" id="1_4h4y0"]
 [ext_resource type="Resource" uid="uid://1dmnxi645856" path="res://resources/items/slime_jelly.tres" id="2_b58ev"]
 [ext_resource type="Texture2D" uid="uid://du2y1m68eg52g" path="res://assets/Monster_Slime_Walk-Sheet.png" id="3_ankfk"]
+[ext_resource type="AudioStream" uid="uid://dmxk4e0jd407c" path="res://audio/slime_hit_sound.mp3" id="4_b58ev"]
 
 [sub_resource type="Animation" id="Animation_7p1mj"]
 length = 0.001
@@ -78,6 +79,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7p1mj"]
 size = Vector2(20, 13)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ankfk"]
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("4_b58ev")
+
 [node name="Enemy" type="CharacterBody2D" unique_id=1171792634]
 script = ExtResource("1_4h4y0")
 loot_drop = ExtResource("2_b58ev")
@@ -95,4 +101,9 @@ libraries/ = SubResource("AnimationLibrary_4ra3w")
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_7p1mj")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2078868885]
+stream = SubResource("AudioStreamRandomizer_ankfk")
+volume_db = -10.17
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

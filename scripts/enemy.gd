@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
 @export var loot_drop: Item
 
 var loot
@@ -40,8 +42,13 @@ func take_damage(value: int) -> void:
 	can_take_damage = false
 	
 	animation_player.play("hit")
-	
+	audio_stream_player.play()
 	health -= value
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(1.8, 0.8), 0.15)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.15).set_trans(Tween.TRANS_BACK)
 
 
 

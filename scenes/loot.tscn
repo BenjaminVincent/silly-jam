@@ -2,8 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dyw3mwv7kt6si" path="res://scripts/loot.gd" id="1_o0pg5"]
 [ext_resource type="Texture2D" uid="uid://nax5qc5y6e4p" path="res://assets/tomato.png" id="2_o0pg5"]
+[ext_resource type="AudioStream" uid="uid://bpnnnifxatvyq" path="res://audio/loot_collect_sound.mp3" id="3_30m34"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o0pg5"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rtp8m"]
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("3_30m34")
 
 [node name="LootDrop" type="Node2D" unique_id=1232429410]
 script = ExtResource("1_o0pg5")
@@ -17,4 +23,9 @@ offset = Vector2(0, -5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=472533526]
 shape = SubResource("RectangleShape2D_o0pg5")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1175905052]
+stream = SubResource("AudioStreamRandomizer_rtp8m")
+volume_db = -13.0
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
