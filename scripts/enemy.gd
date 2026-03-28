@@ -5,29 +5,28 @@ extends CharacterBody2D
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 @export var loot_drop: Item
+@export var health = 3
+@export var speed = 30
+@export var drop_chance = 0.5
 
 var loot
 
-var speed = 30
-
-@export var health = 3
-
 var can_take_damage = true
 
-var drop_chance = 0.99
 
 
 func _ready() -> void:
+
 	add_to_group("enemies")
-	#if loot_drop:
-		#print("loot_drop: ", loot_drop)
-		
+
 	animation_player.play("walk_left")
+
 	velocity.x = -speed
 
 
 
 func _physics_process(delta):
+	
 	move_and_collide(self.velocity * delta)
 
 	if position.x < - 32:
@@ -44,7 +43,9 @@ func take_damage(value: int) -> void:
 	animation_player.play("hit")
 	audio_stream_player.play()
 	health -= value
+	
 	var tween = create_tween()
+	
 	tween.tween_property(self, "scale", Vector2(1.8, 0.8), 0.15)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_ELASTIC)
@@ -67,7 +68,9 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			_death()
 
 
+
 func _death() -> void:
+	
 	if randf() < drop_chance:
 		loot = load("res://scenes/loot.tscn").instantiate()
 		loot.position = position

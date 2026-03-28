@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bpnnnifxatvyq" path="res://audio/loot_collect_sound.mp3" id="3_30m34"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o0pg5"]
+size = Vector2(26, 28)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rtp8m"]
 random_pitch = 1.122462
@@ -21,6 +22,7 @@ offset = Vector2(0, -5)
 [node name="Area2D" type="Area2D" parent="." unique_id=2112352893]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=472533526]
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_o0pg5")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1175905052]
