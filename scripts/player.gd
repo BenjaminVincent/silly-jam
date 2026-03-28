@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var projectile: CharacterBody2D = $"."
 
 
 var speed = 100
