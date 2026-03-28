@@ -8,12 +8,14 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
+
+@export var health = 2
+
 var projectile_speed = 300
 var movement_speed = 100
 var spawn_pos = global_position
 var buffer = Vector2(25, 10)
 var inventory: Dictionary = {}
-var health = 5
 var can_take_damage = true
 var dead: bool = false
 
