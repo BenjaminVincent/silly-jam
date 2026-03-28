@@ -18,7 +18,8 @@ func _ready() -> void:
 	randomize()
 	#forground.set_cell(Vector2i(37, 10), 0, Vector2i(14, 2))
 	#spawn_rocks(60)
-	#spawn_enemy(20)
+	spawn_enemy(20)
+	
 
 
 
