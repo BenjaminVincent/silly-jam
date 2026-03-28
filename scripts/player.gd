@@ -5,14 +5,10 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 
-
-
 var projectile_speed = 300
 var movement_speed = 100
 var spawn_pos = global_position
-var buffer = Vector2(20, 20)
-
-
+var buffer = Vector2(25, 10)
 
 
 func _ready() -> void:
@@ -25,7 +21,6 @@ func get_input():
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
 	velocity = input_dir * movement_speed
-
 
 
 func _physics_process(delta):
@@ -43,6 +38,7 @@ func _physics_process(delta):
 func _input(event):
 	if event.is_action_pressed("shoot"):
 		shoot()
+
 
 func shoot():
 	
