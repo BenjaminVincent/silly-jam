@@ -34,7 +34,7 @@ func _physics_process(delta):
 	
 	move_and_collide(self.velocity * delta)
 	
-	z_index = global_position.y
+	z_index = int(global_position.y)
 	
 	if player:
 		var direction = (player.global_position - global_position).normalized()
