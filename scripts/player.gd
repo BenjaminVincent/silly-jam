@@ -1,5 +1,7 @@
 extends CharacterBody2D
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 var speed = 100
 
@@ -8,6 +10,7 @@ var speed = 100
 func _ready() -> void:
 	
 	animation_player.play("walk_right")
+	
 
 
 
