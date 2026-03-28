@@ -12,6 +12,8 @@ var velocity: Vector2
 
 var speed = 40
 
+var collected: bool = false
+
 var tween
 var tween_2
 var loot_data: Item
@@ -47,10 +49,14 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		
+		if collected: return
 		
 		if not audio_stream_player.is_playing():
 			audio_stream_player.play()
-		body.add_to_inventory(loot_name, gold)
+			
+		if not collected:
+			collected = true
+			body.add_to_inventory(loot_name, gold)
 		
 		tween_2 = create_tween()
 		scale = Vector2(1.0, 1.0)
@@ -58,8 +64,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		tween_2.tween_property(self, "scale", Vector2(0.0, 0.0), 0.1)
 		tween_2.set_trans(Tween.TRANS_SINE)
 		await tween.finished
-		
-		hide()
+		queue_free()
 
 
 

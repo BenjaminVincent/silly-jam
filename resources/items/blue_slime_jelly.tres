@@ -7,4 +7,5 @@
 script = ExtResource("1_c4l40")
 item_name = "Blue Slime Jelly"
 texture = ExtResource("2_6kg2x")
+gold = 5
 metadata/_custom_type_script = "uid://cgniidl4rxo80"
