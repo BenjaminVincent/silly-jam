@@ -11,6 +11,8 @@ var spawn_pos = global_position
 var buffer = Vector2(25, 10)
 
 
+var inventory: Dictionary = {}
+
 func _ready() -> void:
 	add_to_group("player")
 	animation_player.play("walk_right")
@@ -52,3 +54,14 @@ func shoot():
 	var direction = (mouse_pos - global_position).normalized()
 	
 	projectile.velocity = direction * projectile_speed
+
+
+
+func add_to_inventory(item_name, gold) -> void:
+	
+	if inventory.has(item_name):
+		inventory[item_name].quantity += 1
+	else:
+		inventory[item_name] = { "quantity": 1, "gold": gold }
+	
+	print("inventory: ", inventory)

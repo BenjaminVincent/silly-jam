@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://0kgakc0olb5"]
 
-[ext_resource type="Texture2D" uid="uid://du2y1m68eg52g" path="res://assets/Monster_Slime_Walk-Sheet.png" id="1_7p1mj"]
-[ext_resource type="Script" uid="uid://bu0hky3letw6i" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="Script" uid="uid://bu0hky3letw6i" path="res://scripts/enemy.gd" id="1_4h4y0"]
+[ext_resource type="Resource" uid="uid://1dmnxi645856" path="res://resources/items/slime_jelly.tres" id="2_b58ev"]
+[ext_resource type="Texture2D" uid="uid://du2y1m68eg52g" path="res://assets/Monster_Slime_Walk-Sheet.png" id="3_ankfk"]
 
 [sub_resource type="Animation" id="Animation_7p1mj"]
 length = 0.001
@@ -78,10 +79,11 @@ _data = {
 size = Vector2(20, 13)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1171792634]
-script = ExtResource("1_md0e3")
+script = ExtResource("1_4h4y0")
+loot_drop = ExtResource("2_b58ev")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1730519767]
-texture = ExtResource("1_7p1mj")
+texture = ExtResource("3_ankfk")
 hframes = 10
 vframes = 3
 

@@ -2,6 +2,10 @@ extends CharacterBody2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@export var loot_drop: Item
+
+var loot
+
 var speed = 30
 
 var health = 3
@@ -10,11 +14,12 @@ var can_take_damage = true
 
 var drop_chance = 0.99
 
-var loot
-
 
 func _ready() -> void:
 	add_to_group("enemies")
+	#if loot_drop:
+		#print("loot_drop: ", loot_drop)
+		
 	animation_player.play("walk_left")
 	velocity.x = -speed
 
@@ -59,7 +64,8 @@ func _death() -> void:
 	if randf() < drop_chance:
 		loot = load("res://scenes/loot.tscn").instantiate()
 		loot.position = position
-		print("item dropping!")
+		loot.loot_data = loot_drop
+		print("item dropping: ", loot.loot_data)
 		get_parent().add_child(loot)
 		
 	queue_free()

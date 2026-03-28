@@ -8,6 +8,6 @@ func _ready() -> void:
 
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var mouse_pos = get_local_mouse_position()
 	set_point_position(points.size() - 1, mouse_pos)

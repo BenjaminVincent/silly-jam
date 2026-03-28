@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bfom4410f56qv"]
 
 [ext_resource type="Script" uid="uid://dyw3mwv7kt6si" path="res://scripts/loot.gd" id="1_o0pg5"]
-[ext_resource type="Texture2D" uid="uid://de2x2xmlpwhwt" path="res://assets/slime_jelly.png" id="1_xofgn"]
+[ext_resource type="Texture2D" uid="uid://nax5qc5y6e4p" path="res://assets/tomato.png" id="2_o0pg5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o0pg5"]
 
@@ -9,7 +9,8 @@
 script = ExtResource("1_o0pg5")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=458910463]
-texture = ExtResource("1_xofgn")
+texture = ExtResource("2_o0pg5")
+offset = Vector2(0, -5)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2112352893]
 

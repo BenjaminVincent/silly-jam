@@ -26,7 +26,7 @@ func spawn_enemy(n: int, time_between: float = 0.8):
 	
 	for i in range(0, n):
 		
-		var enemy = load("res://scenes/enemy.tscn").instantiate()
+		var enemy = load("res://scenes/enemies/slime.tscn").instantiate()
 		
 		var y_val = randi_range(5, 16)
 		var x_val = randi_range(41, 43)
