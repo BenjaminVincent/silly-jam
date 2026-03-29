@@ -15,7 +15,7 @@ var wave_thresholds = []
 var offset = 600
 
 var wave_0_start_x = 100
-var wave_1_start_x = 10
+var wave_1_start_x = 355
 var wave_2_start_x = 368
 var wave_3_start_x = 396
 var wave_4_start_x = 477
@@ -37,15 +37,11 @@ var waves = [
 		{ "type": "slime",      "cell": Vector2i(215, 6) },
 		{ "type": "slime",      "cell": Vector2i(215, 9) },
 		{ "type": "slime",      "cell": Vector2i(242, 15) },
-	],
-	[ # wave 0
 		{ "type": "slime", "cell": Vector2i(wave_0_start_x + offset, 9)  },
 		{ "type": "slime", "cell": Vector2i(wave_0_start_x + offset, 8) },
 		{ "type": "slime",      "cell": Vector2i(wave_0_start_x + offset, 10) },
 		{ "type": "slime",      "cell": Vector2i(wave_0_start_x + offset, 7) },
 		{ "type": "slime",      "cell": Vector2i(wave_0_start_x + offset, 9) },
-	],
-	[ # wave 1
 		{ "type": "slime", "cell": Vector2i(wave_1_start_x, 7)  },
 		{ "type": "slime", "cell": Vector2i(wave_1_start_x, 10) },
 		{ "type": "slime", "cell": Vector2i(wave_1_start_x, 8)  },
@@ -53,18 +49,14 @@ var waves = [
 		{ "type": "blue_slime", "cell": Vector2i(wave_1_start_x, 10) },
 		{ "type": "blue_slime", "cell": Vector2i(wave_1_start_x, 14) },
 		{ "type": "slime",      "cell": Vector2i(wave_1_start_x, 13)  },
-	],
-	[ # wave 2
-		{ "type": "slime", "cell": Vector2i(wave_2_start_x, 6)  },
+		{ "type": "slime", "cell": Vector2i(wave_2_start_x, 8)  },
 		{ "type": "slime", "cell": Vector2i(wave_2_start_x, 10) },
 		{ "type": "blue_slime", "cell": Vector2i(wave_2_start_x, 14) },
 		{ "type": "slime",      "cell": Vector2i(wave_2_start_x, 8)  },
-		{ "type": "blue_slime", "cell": Vector2i(wave_2_start_x, 6)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_2_start_x, 9)  },
 		{ "type": "blue_slime", "cell": Vector2i(wave_2_start_x, 10) },
 		{ "type": "blue_slime", "cell": Vector2i(wave_2_start_x, 14) },
 		{ "type": "slime",      "cell": Vector2i(wave_2_start_x, 8)  },
-	],
-	[ # wave 3
 		{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 6)  },
 		{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 10) },
 		{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 14) },
@@ -73,21 +65,69 @@ var waves = [
 		{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 10) },
 		{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 14) },
 		{ "type": "slime",      "cell": Vector2i(wave_3_start_x, 8)  },
-	],
-	[ # wave 4
-		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 6)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 9)  },
 		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 11) },
 		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 14) },
 		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 8)  },
-		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 3)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 7)  },
 		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 10) },
 		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 12) },
 		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 8)  },
-		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 4)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 8)  },
 		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 10) },
 		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 13) },
 		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 8)  },
-	],
+	]
+	#[ # wave 0
+		#{ "type": "slime", "cell": Vector2i(wave_0_start_x + offset, 9)  },
+		#{ "type": "slime", "cell": Vector2i(wave_0_start_x + offset, 8) },
+		#{ "type": "slime",      "cell": Vector2i(wave_0_start_x + offset, 10) },
+		#{ "type": "slime",      "cell": Vector2i(wave_0_start_x + offset, 7) },
+		#{ "type": "slime",      "cell": Vector2i(wave_0_start_x + offset, 9) },
+	#],
+	#[ # wave 1
+		#{ "type": "slime", "cell": Vector2i(wave_1_start_x, 7)  },
+		#{ "type": "slime", "cell": Vector2i(wave_1_start_x, 10) },
+		#{ "type": "slime", "cell": Vector2i(wave_1_start_x, 8)  },
+		#{ "type": "slime", "cell": Vector2i(wave_1_start_x, 11)  },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_1_start_x, 10) },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_1_start_x, 14) },
+		#{ "type": "slime",      "cell": Vector2i(wave_1_start_x, 13)  },
+	#],
+	#[ # wave 2
+		#{ "type": "slime", "cell": Vector2i(wave_2_start_x, 8)  },
+		#{ "type": "slime", "cell": Vector2i(wave_2_start_x, 10) },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_2_start_x, 14) },
+		#{ "type": "slime",      "cell": Vector2i(wave_2_start_x, 8)  },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_2_start_x, 9)  },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_2_start_x, 10) },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_2_start_x, 14) },
+		#{ "type": "slime",      "cell": Vector2i(wave_2_start_x, 8)  },
+	#],
+	#[ # wave 3
+		#{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 6)  },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 10) },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 14) },
+		#{ "type": "slime",      "cell": Vector2i(wave_3_start_x, 8)  },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 6)  },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 10) },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 14) },
+		#{ "type": "slime",      "cell": Vector2i(wave_3_start_x, 8)  },
+	#],
+	#[ # wave 4
+		#{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 9)  },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 11) },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 14) },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 8)  },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 7)  },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 10) },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 12) },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 8)  },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 8)  },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 10) },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 13) },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 8)  },
+	
 ]
 
 func _ready() -> void:
