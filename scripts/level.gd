@@ -12,8 +12,9 @@ var level_one_ended: bool = false
 var current_wave = 0
 
 var wave_thresholds = []
+var offset = 600
 
-var wave_0_start_x = 190
+var wave_0_start_x = 100
 var wave_1_start_x = 10
 var wave_2_start_x = 368
 var wave_3_start_x = 396
@@ -38,11 +39,11 @@ var waves = [
 		{ "type": "slime",      "cell": Vector2i(242, 15) },
 	],
 	[ # wave 0
-		{ "type": "slime", "cell": Vector2i(wave_0_start_x, 6)  },
-		{ "type": "slime", "cell": Vector2i(wave_0_start_x, 8) },
-		{ "type": "slime",      "cell": Vector2i(wave_0_start_x, 6) },
-		{ "type": "slime",      "cell": Vector2i(wave_0_start_x, 7) },
-		{ "type": "slime",      "cell": Vector2i(wave_0_start_x, 9) },
+		{ "type": "slime", "cell": Vector2i(wave_0_start_x + offset, 9)  },
+		{ "type": "slime", "cell": Vector2i(wave_0_start_x + offset, 8) },
+		{ "type": "slime",      "cell": Vector2i(wave_0_start_x + offset, 10) },
+		{ "type": "slime",      "cell": Vector2i(wave_0_start_x + offset, 7) },
+		{ "type": "slime",      "cell": Vector2i(wave_0_start_x + offset, 9) },
 	],
 	[ # wave 1
 		{ "type": "slime", "cell": Vector2i(wave_1_start_x, 7)  },
