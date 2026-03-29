@@ -39,7 +39,7 @@ func _ready() -> void:
 
 
 func _process(delta):
-	position += Vector2(-40, 0) * delta
+	position += Vector2(-GlobalStatics.scroll_speed, 0) * delta
 
 
 

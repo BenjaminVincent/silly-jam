@@ -4,8 +4,8 @@ extends Node2D
 
 @onready var forground: TileMapLayer = $Forground
 @onready var background: TileMapLayer = $Background
+@onready var secondary_forground: TileMapLayer = $SecondaryForground
 
-var scroll_speed = 40 #40
 var rock_tile = Vector2i(14, 2)
 
 #var level_one_end = 20 #200
@@ -32,8 +32,8 @@ func _ready() -> void:
 	
 
 func _process(delta):
-	forground.position.x -= scroll_speed * delta
-	
+	forground.position.x -= GlobalStatics.scroll_speed * delta
+	secondary_forground.position.x -= GlobalStatics.scroll_speed * delta
 	
 	if not level_one_ended and forground.position.x < -level_one_global_end.x + 400:
 		level_one_ended = true
