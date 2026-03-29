@@ -6,7 +6,8 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var player_hit: AudioStreamPlayer = $player_hit
+@onready var game_over: AudioStreamPlayer = $game_over
 
 
 @export var health = 3
@@ -64,7 +65,7 @@ func _physics_process(delta):
 		var collision = move_and_collide(velocity * delta)
 		
 		if can_take_damage && (collision && collision.get_collider().is_in_group("enemies") || hit_by_enemy):
-			audio_stream_player.play()
+			player_hit.play()
 			take_damage(1)
 		
 		var rect = get_viewport_rect()
@@ -73,8 +74,7 @@ func _physics_process(delta):
 		global_position = global_position.clamp(rect.end * -1  , rect.end - bounds)
 	
 	if global_position.x < -off_screen_death_threshold:
-		dead = true
-		GlobalStatics.scroll_speed = 0
+		_death()
 		queue_free()
 
 
@@ -116,7 +116,7 @@ func take_damage(value: int) -> void:
 	
 	
 	animation_player.play("hit")
-	audio_stream_player.play()
+	player_hit.play()
 	health -= value
 
 
@@ -130,8 +130,15 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				set_collision_mask_value(2, true)
 				set_collision_layer_value(1, true)
 			else:
-				dead = true
-				GlobalStatics.scroll_speed = 0
+				_death()
 				animation_player.play("death")
 		"death":
-			print("player has died")
+			pass
+			
+func _death() -> void:
+	dead = true
+	GlobalStatics.scroll_speed = 0
+	game_over.play()
+	#load("res://scenes/UI/game_over_panel.tscn")
+	print("player has died")
+	

@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dgcepy3yf7tqx"]
+
+[ext_resource type="Script" uid="uid://ctih7rwk084bq" path="res://scenes/UI/game_over_panel.gd" id="1_by1o2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dj0wr"]
+
+[node name="game_over_panel" type="Control" unique_id=983951085]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_by1o2")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=86483356]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 30.999996
+offset_right = 682.4212
+offset_bottom = 366.42267
+scale = Vector2(0.8050845, 0.88246876)
+color = Color(0.5882353, 0.42352942, 0.42352942, 1)
+
+[node name="Label" type="Label" parent="." unique_id=812431533]
+modulate = Color(0.18039216, 0.13333334, 0.18431373, 1)
+layout_mode = 0
+offset_left = 249.0
+offset_top = 56.0
+offset_right = 361.0
+offset_bottom = 80.0
+text = "Game Over"
+label_settings = SubResource("LabelSettings_dj0wr")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1869776440]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 228.0
+offset_right = 322.0
+offset_bottom = 274.0
+
+[node name="Restart" type="Button" parent="HBoxContainer" unique_id=435989421]
+layout_mode = 2
+text = "  Restart  "
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer" unique_id=1946450601]
+layout_mode = 2
+
+[node name="Quit" type="Button" parent="HBoxContainer" unique_id=1698486447]
+layout_mode = 2
+text = "    Quit     "
