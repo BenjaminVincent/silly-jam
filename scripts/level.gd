@@ -13,16 +13,18 @@ var current_wave = 0
 
 var wave_thresholds = []
 
-var wave_0_start_x = 215
-var wave_one_start_x = 66
-var wave_two_start_x = 80
-var wave_three_start_x = 120
+var wave_0_start_x = 190
+var wave_1_start_x = 329
+var wave_2_start_x = 368
+var wave_3_start_x = 396
+var wave_4_start_x = 477
 
 var waves = [
 	[ # slimes
 		{ "type": "slime",      "cell": Vector2i(49, 14) },
 		{ "type": "slime",      "cell": Vector2i(66, 7) },
 		{ "type": "slime",      "cell": Vector2i(79, 15) },
+		{ "type": "slime",      "cell": Vector2i(90, 9) },
 		{ "type": "slime",      "cell": Vector2i(101, 7) },
 		{ "type": "slime",      "cell": Vector2i(115, 7) },
 		{ "type": "slime",      "cell": Vector2i(115, 8) },
@@ -42,21 +44,48 @@ var waves = [
 		{ "type": "slime",      "cell": Vector2i(wave_0_start_x, 7) },
 		{ "type": "slime",      "cell": Vector2i(wave_0_start_x, 9) },
 	],
-	[ # slime 9
-
+	[ # wave 1
+		{ "type": "slime", "cell": Vector2i(wave_1_start_x, 6)  },
+		{ "type": "slime", "cell": Vector2i(wave_1_start_x, 10) },
+		{ "type": "slime", "cell": Vector2i(wave_1_start_x, 8)  },
+		{ "type": "slime", "cell": Vector2i(wave_1_start_x, 6)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_1_start_x, 10) },
+		{ "type": "blue_slime", "cell": Vector2i(wave_1_start_x, 14) },
+		{ "type": "slime",      "cell": Vector2i(wave_1_start_x, 8)  },
 	],
-	[ # slime 8
-
+	[ # wave 2
+		{ "type": "slime", "cell": Vector2i(wave_2_start_x, 6)  },
+		{ "type": "slime", "cell": Vector2i(wave_2_start_x, 10) },
+		{ "type": "blue_slime", "cell": Vector2i(wave_2_start_x, 14) },
+		{ "type": "slime",      "cell": Vector2i(wave_2_start_x, 8)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_2_start_x, 6)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_2_start_x, 10) },
+		{ "type": "blue_slime", "cell": Vector2i(wave_2_start_x, 14) },
+		{ "type": "slime",      "cell": Vector2i(wave_2_start_x, 8)  },
 	],
 	[ # wave 3
-		#{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 6)  },
-		#{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 10) },
-		#{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 14) },
-		#{ "type": "slime",      "cell": Vector2i(wave_three_start_x, 8)  },
-		#{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 6)  },
-		#{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 10) },
-		#{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 14) },
-		#{ "type": "slime",      "cell": Vector2i(wave_three_start_x, 8)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 6)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 10) },
+		{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 14) },
+		{ "type": "slime",      "cell": Vector2i(wave_3_start_x, 8)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 6)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 10) },
+		{ "type": "blue_slime", "cell": Vector2i(wave_3_start_x, 14) },
+		{ "type": "slime",      "cell": Vector2i(wave_3_start_x, 8)  },
+	],
+	[ # wave 4
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 6)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 11) },
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 14) },
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 8)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 3)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 10) },
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 16) },
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 8)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 4)  },
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 10) },
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 17) },
+		{ "type": "blue_slime", "cell": Vector2i(wave_4_start_x, 8)  },
 	],
 ]
 
@@ -67,9 +96,10 @@ func _ready() -> void:
 	forground.add_to_group("forground")
 	
 	wave_thresholds = [
-		-forground.to_global(forground.map_to_local(Vector2i(wave_one_start_x, 0))).x,
-		-forground.to_global(forground.map_to_local(Vector2i(wave_two_start_x, 0))).x,
-		-forground.to_global(forground.map_to_local(Vector2i(wave_three_start_x, 0))).x,
+		-forground.to_global(forground.map_to_local(Vector2i(wave_0_start_x, 0))).x,
+		-forground.to_global(forground.map_to_local(Vector2i(wave_1_start_x, 0))).x,
+		-forground.to_global(forground.map_to_local(Vector2i(wave_2_start_x, 0))).x,
+		-forground.to_global(forground.map_to_local(Vector2i(wave_3_start_x, 0))).x,
 	]
 	
 	level_one_cell_choords = forground.map_to_local(Vector2i(200, 0))
@@ -99,7 +129,7 @@ func spawn_next_wave():
 	
 	for entry in waves[current_wave]:
 		spawn_enemy_at(entry.type, entry.cell)
-		await get_tree().create_timer(0.8).timeout
+		#await get_tree().create_timer(0.8).timeout
 
 
 
