@@ -7,7 +7,7 @@ extends CharacterBody2D
 
 
 @export var loot_drop: Item
-@export var health = 3
+@export var health = 300
 @export var speed = 30
 @export var drop_chance = 0.5
 
@@ -36,9 +36,15 @@ func _physics_process(delta):
 	
 	z_index = int(global_position.y)
 	
+	var collision = move_and_collide(velocity * delta)
+	
+	if collision:
+		if collision.get_collider().is_in_group("player"):
+			player.hit_by_enemy = true
+			print("enemy hit player")
+	
 	if player:
 		var direction = (player.global_position - global_position).normalized()
-		#velocity = direction * speed
 		velocity = lerp(velocity, direction * speed, follow_delay)
 	
 	if position.x < - 32:

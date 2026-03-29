@@ -10,14 +10,15 @@ extends CharacterBody2D
 
 
 @export var health = 2
+@export var movement_speed = 50
 
 var projectile_speed = 300
-var movement_speed = 100
 var spawn_pos = global_position
 var buffer = Vector2(25, 10)
 var inventory: Dictionary = {}
 var can_take_damage = true
 var dead: bool = false
+var hit_by_enemy = false
 
 var level
 
@@ -59,11 +60,9 @@ func _physics_process(delta):
 	
 	var collision = move_and_collide(velocity * delta)
 	
-	if collision:
-		if collision.get_collider().is_in_group("enemies"):
-			if can_take_damage: 
-				audio_stream_player.play()
-				take_damage(1)
+	if can_take_damage && (collision && collision.get_collider().is_in_group("enemies") || hit_by_enemy):
+		audio_stream_player.play()
+		take_damage(1)
 	
 	var rect = get_viewport_rect()
 	var bounds = collision_shape_2d.shape.size + buffer
@@ -102,9 +101,10 @@ func take_damage(value: int) -> void:
 	if not can_take_damage: return
 	
 	can_take_damage = false
+	hit_by_enemy = false
 	set_collision_mask_value(2, false)
 	set_collision_layer_value(1, false)
-	#collision_shape_2d.set_deferred("disabled", true)
+	
 	
 	animation_player.play("hit")
 	audio_stream_player.play()
