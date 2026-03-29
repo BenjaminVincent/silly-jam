@@ -63,6 +63,10 @@ func _ready() -> void:
 
 func get_input():
 	
+	if end_screen_shown:
+		velocity = Vector2.ZERO
+		return
+		
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	if Input.is_action_pressed("shoot") && shot_ready:
@@ -176,10 +180,12 @@ func _physics_process(delta):
 			
 			if not end_screen_shown and (atlas_coords == blue_rug_top or atlas_coords == blue_rug_middle or atlas_coords == blue_rug_bottom):
 				end_screen_shown = true
-				#get_tree().paused = true
+				GlobalStatics.scroll_speed = 0
+				_wave_clear()
+				for e in get_tree().get_nodes_in_group("enemies"):
+					e.queue_free()
 				end.get_score(inventory)
 				end.show()
-				
 			
 	
 		
