@@ -20,7 +20,5 @@ func _update_health_ui(current_health) -> void:
 		child.queue_free()
 	
 	for health in current_health:
-		print("adding HEALTH ICON!")
 		var heart_icon = load("res://scenes/UI/health_icon.tscn").instantiate()
-		
 		h_box_container.add_child(heart_icon)

@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cwobeusc3yki3"]
+
+[ext_resource type="Script" uid="uid://d2e30h11m5mwf" path="res://scripts/end.gd" id="1_mwn6m"]
+
+[node name="End" type="Control" unique_id=1334382889]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mwn6m")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=304648709]
+layout_mode = 0
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.18039216, 0.13333334, 0.18431373, 0.57254905)
+
+[node name="Label" type="Label" parent="." unique_id=1301288987]
+layout_mode = 0
+offset_left = -220.0
+offset_top = -57.0
+offset_right = 220.0
+offset_bottom = -25.0
+theme_override_font_sizes/font_size = 32
+text = "RUFUS GOT TO TOWN!"
+
+[node name="Score" type="Label" parent="." unique_id=833308950]
+layout_mode = 0
+offset_left = -220.0
+offset_top = -6.0
+offset_right = 220.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 32
+text = "SCORE:"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dgcepy3yf7tqx"]
 
-[ext_resource type="Script" uid="uid://ctih7rwk084bq" path="res://scripts/game_over_panel.gd" id="1_by1o2"]
+[ext_resource type="Script" path="res://scripts/game_over_panel.gd" id="1_by1o2"]
+[ext_resource type="Texture2D" uid="uid://ca6keldaewo4e" path="res://assets/button.png" id="2_hlcly"]
+[ext_resource type="Texture2D" uid="uid://be2cc8ccppqo3" path="res://assets/button_hover.png" id="3_uguwj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dj0wr"]
 
@@ -23,31 +25,52 @@ color = Color(0.18039216, 0.13333334, 0.18431373, 0.44705883)
 [node name="Label" type="Label" parent="." unique_id=812431533]
 modulate = Color(0.18039216, 0.13333334, 0.18431373, 1)
 layout_mode = 0
-offset_left = 249.0
-offset_top = 56.0
-offset_right = 361.0
-offset_bottom = 80.0
+offset_top = 199.0
+offset_right = 640.0
+offset_bottom = 228.0
 text = "Game Over"
 label_settings = SubResource("LabelSettings_dj0wr")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1869776440]
 layout_mode = 0
-offset_left = 219.0
 offset_top = 228.0
-offset_right = 322.0
-offset_bottom = 274.0
+offset_right = 640.0
+offset_bottom = 289.0
+alignment = 1
 
-[node name="Restart" type="Button" parent="HBoxContainer" unique_id=435989421]
+[node name="Restart" type="TextureButton" parent="HBoxContainer" unique_id=1842680260]
 layout_mode = 2
-text = "  Restart  "
+texture_normal = ExtResource("2_hlcly")
+texture_hover = ExtResource("3_uguwj")
+
+[node name="Label" type="Label" parent="HBoxContainer/Restart" unique_id=11419415]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 7.0
+offset_right = 134.0
+offset_bottom = 64.0
+text = "Restart"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer" unique_id=1946450601]
 layout_mode = 2
 
-[node name="Quit" type="Button" parent="HBoxContainer" unique_id=1698486447]
+[node name="Quit" type="TextureButton" parent="HBoxContainer" unique_id=480528173]
 layout_mode = 2
-text = "    Quit     "
+texture_normal = ExtResource("2_hlcly")
+texture_hover = ExtResource("3_uguwj")
+
+[node name="Label" type="Label" parent="HBoxContainer/Quit" unique_id=1603099149]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 7.0
+offset_right = 134.0
+offset_bottom = 64.0
+text = "QUIT"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="HBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="HBoxContainer/Quit" to="." method="_on_quit_pressed"]

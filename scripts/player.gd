@@ -6,9 +6,12 @@ extends CharacterBody2D
 @onready var player_hit: AudioStreamPlayer = $player_hit
 @onready var game_over_sound: AudioStreamPlayer = $game_over
 @onready var game = get_tree().root.get_node("/root/Game")
+@onready var end = get_tree().root.get_node("/root/Game/End")
 @onready var ability_UI = get_tree().root.get_node("/root/Game/UI/AbilityUi")
 @onready var game_over_panel = get_tree().root.get_node("/root/Game/UI/game_over_panel")
 @onready var health_ui = get_tree().root.get_node("/root/Game/UI/HealthUi")
+
+
 @export var health = 3
 @export var movement_speed = 50
 @export var fire_rate = 0.2
@@ -214,6 +217,7 @@ func add_to_inventory(item_name, gold) -> void:
 		inventory[item_name].quantity += 1
 	else:
 		inventory[item_name] = { "quantity": 1, "gold": gold }
+
 
 
 
