@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cwobeusc3yki3"]
 
 [ext_resource type="Script" uid="uid://d2e30h11m5mwf" path="res://scripts/end.gd" id="1_mwn6m"]
+[ext_resource type="Texture2D" uid="uid://ca6keldaewo4e" path="res://assets/button.png" id="2_p7m4f"]
+[ext_resource type="Texture2D" uid="uid://be2cc8ccppqo3" path="res://assets/button_hover.png" id="3_bvfni"]
 
 [node name="End" type="Control" unique_id=1334382889]
 layout_mode = 3
@@ -40,3 +42,47 @@ theme_override_font_sizes/font_size = 32
 text = "SCORE:"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=674576866]
+layout_mode = 0
+offset_left = -320.0
+offset_top = 40.0
+offset_right = 320.0
+offset_bottom = 101.0
+alignment = 1
+
+[node name="Restart" type="TextureButton" parent="HBoxContainer" unique_id=551283876]
+layout_mode = 2
+texture_normal = ExtResource("2_p7m4f")
+texture_hover = ExtResource("3_bvfni")
+
+[node name="Label" type="Label" parent="HBoxContainer/Restart" unique_id=1249939724]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 7.0
+offset_right = 134.0
+offset_bottom = 64.0
+text = "Restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer" unique_id=1323918026]
+layout_mode = 2
+
+[node name="Quit" type="TextureButton" parent="HBoxContainer" unique_id=1780434645]
+layout_mode = 2
+texture_normal = ExtResource("2_p7m4f")
+texture_hover = ExtResource("3_bvfni")
+
+[node name="Label" type="Label" parent="HBoxContainer/Quit" unique_id=1265252781]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 7.0
+offset_right = 134.0
+offset_bottom = 64.0
+text = "QUIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="HBoxContainer/Quit" to="." method="_on_quit_pressed"]

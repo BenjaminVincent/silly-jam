@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var player_hit: AudioStreamPlayer = $player_hit
 @onready var game_over_sound: AudioStreamPlayer = $game_over
 @onready var game = get_tree().root.get_node("/root/Game")
-@onready var end = get_tree().root.get_node("/root/Game/End")
+@onready var end = get_tree().root.get_node("/root/Game/UI/End")
 @onready var ability_UI = get_tree().root.get_node("/root/Game/UI/AbilityUi")
 @onready var game_over_panel = get_tree().root.get_node("/root/Game/UI/game_over_panel")
 @onready var health_ui = get_tree().root.get_node("/root/Game/UI/HealthUi")
@@ -52,7 +52,7 @@ var blue_rug_bottom = Vector2i(7, 1)
 
 
 var ability_selector_shown: bool = false
-
+var end_screen_shown: bool = false
 
 func _ready() -> void:
 	add_to_group("player")
@@ -154,9 +154,10 @@ func _end_ability(ability) -> void:
 
 
 
+
 func _physics_process(delta):
 	
-	z_index = int(global_position.y)
+	z_index = clampi(int(global_position.y), -4096, 4096)
 	
 	if !dead:
 		get_input()
@@ -164,18 +165,18 @@ func _physics_process(delta):
 		var collision = move_and_collide(velocity * delta)
 		
 		var forground = get_tree().get_first_node_in_group("forground")
-		if forground and not ability_selector_shown:
-			
+		if forground:
 			var tile_pos = forground.local_to_map(forground.to_local(global_position))
 			var atlas_coords = forground.get_cell_atlas_coords(tile_pos)
 			
-			if atlas_coords == end_line_top or atlas_coords == end_line_middle or atlas_coords == end_line_bottom:
+			if not ability_selector_shown and (atlas_coords == end_line_top or atlas_coords == end_line_middle or atlas_coords == end_line_bottom):
 				ability_selector_shown = true
 				get_tree().paused = true
 				game.get_node("UI/AbilitySelector").show_with_tween(abilities)
-				
-			if atlas_coords == blue_rug_top or atlas_coords == blue_rug_middle or atlas_coords == blue_rug_bottom:
-				get_tree().paused = true
+			
+			if not end_screen_shown and (atlas_coords == blue_rug_top or atlas_coords == blue_rug_middle or atlas_coords == blue_rug_bottom):
+				end_screen_shown = true
+				#get_tree().paused = true
 				end.get_score(inventory)
 				end.show()
 				
