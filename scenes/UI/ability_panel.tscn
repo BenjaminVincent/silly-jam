@@ -22,3 +22,4 @@ texture_normal = ExtResource("1_27uwx")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="TextureButton" to="." method="_on_texture_button_mouse_entered"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
