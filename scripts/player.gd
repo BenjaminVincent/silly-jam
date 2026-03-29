@@ -165,7 +165,7 @@ func _physics_process(delta):
 			if atlas_coords == end_line_top or atlas_coords == end_line_middle or atlas_coords == end_line_bottom:
 				ability_selector_shown = true
 				get_tree().paused = true
-				game.get_node("UI/AbilitySelector").show_with_tween()
+				game.get_node("UI/AbilitySelector").show_with_tween(abilities)
 				
 		
 	
