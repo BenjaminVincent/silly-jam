@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://42ymejfvqc8t"]
+
+[ext_resource type="Texture2D" uid="uid://dvlgja0ufbf0s" path="res://assets/rufus_goes_to_town_start_screen.png" id="1_jaeev"]
+
+[node name="Start" type="Control" unique_id=1527552250]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=518801073]
+position = Vector2(321, 180)
+texture = ExtResource("1_jaeev")
+
+[node name="Label" type="Label" parent="." unique_id=1430250863]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 181.0
+offset_right = 594.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 24
+text = "RUFUS GOES TO TOWN"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1791877254]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

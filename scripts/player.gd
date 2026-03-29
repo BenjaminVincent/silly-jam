@@ -1,16 +1,13 @@
 extends CharacterBody2D
 
-
-
-
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var player_hit: AudioStreamPlayer = $player_hit
-@onready var game_over: AudioStreamPlayer = $game_over
+@onready var game_over_sound: AudioStreamPlayer = $game_over
 @onready var game = get_tree().root.get_node("/root/Game")
 @onready var ability_UI = get_tree().root.get_node("/root/Game/UI/AbilityUi")
-
+@onready var game_over_panel = get_tree().root.get_node("/root/Game/UI/game_over_panel")
 @export var health = 3
 @export var movement_speed = 50
 @export var fire_rate = 0.2
@@ -252,11 +249,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _death() -> void:
 	dead = true
+	get_tree().paused = true
 	GlobalStatics.scroll_speed = 0
-	game_over.play()
-	#load("res://scenes/UI/game_over_panel.tscn")
-	print("player has died")
-
+	game_over_sound.play()
+	game_over_panel.show()
 
 
 func add_ability(ability) -> void:

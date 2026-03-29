@@ -38,6 +38,9 @@ func _on_texture_button_mouse_entered() -> void:
 func _on_texture_button_pressed(button) -> void:
 	
 	var player = get_tree().get_first_node_in_group("player")
+	
+	if not player: return
+	
 	ability_selection_menu._hide_abilities()
 	ability_selection_menu.hide()
 	player.add_ability(button.get_parent().ability)
@@ -47,4 +50,5 @@ func _on_texture_button_pressed(button) -> void:
 	await get_tree().create_timer(6).timeout
 	await get_tree().process_frame
 	
-	player.reset_ability_selector()
+	if player:
+		player.reset_ability_selector()

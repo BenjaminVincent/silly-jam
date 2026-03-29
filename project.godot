@@ -27,6 +27,10 @@ window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
+[gui]
+
+theme/custom_font="uid://co482jiolln2p"
+
 [input]
 
 ui_left={
