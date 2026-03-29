@@ -249,7 +249,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _death() -> void:
 	dead = true
-	get_tree().paused = true
 	GlobalStatics.scroll_speed = 0
 	game_over_sound.play()
 	game_over_panel.show()

@@ -13,25 +13,45 @@ var current_wave = 0
 
 var wave_thresholds = []
 
-var wave_one_start_x = 50
+var wave_0_start_x = 215
+var wave_one_start_x = 66
 var wave_two_start_x = 80
 var wave_three_start_x = 120
 
 var waves = [
-	[ # wave 1
-		{ "type": "slime",      "cell": Vector2i(wave_one_start_x, 10) },
-		{ "type": "slime",      "cell": Vector2i(wave_one_start_x, 13) },
-		{ "type": "slime",      "cell": Vector2i(wave_one_start_x, 16) },
+	[ # slimes
+		{ "type": "slime",      "cell": Vector2i(49, 14) },
+		{ "type": "slime",      "cell": Vector2i(66, 7) },
+		{ "type": "slime",      "cell": Vector2i(79, 15) },
+		{ "type": "slime",      "cell": Vector2i(101, 7) },
+		{ "type": "slime",      "cell": Vector2i(115, 7) },
+		{ "type": "slime",      "cell": Vector2i(115, 8) },
+		{ "type": "slime",      "cell": Vector2i(135, 9) },
+		{ "type": "slime",      "cell": Vector2i(157, 13) },
+		{ "type": "slime",      "cell": Vector2i(157, 14) },
+		{ "type": "slime",      "cell": Vector2i(182, 5) },
+		{ "type": "slime",      "cell": Vector2i(192, 15) },
+		{ "type": "slime",      "cell": Vector2i(215, 6) },
+		{ "type": "slime",      "cell": Vector2i(215, 9) },
+		{ "type": "slime",      "cell": Vector2i(242, 15) },
 	],
-	[ # wave 2
-		{ "type": "slime", "cell": Vector2i(wave_two_start_x, 6)  },
-		{ "type": "slime", "cell": Vector2i(wave_two_start_x, 10) },
-		{ "type": "slime",      "cell": Vector2i(wave_two_start_x, 12) },
+	[ # wave 0
+		{ "type": "slime", "cell": Vector2i(wave_0_start_x, 4)  },
+		{ "type": "slime", "cell": Vector2i(wave_0_start_x, 5) },
+		{ "type": "slime",      "cell": Vector2i(wave_0_start_x, 6) },
+		{ "type": "slime",      "cell": Vector2i(wave_0_start_x, 7) },
+		{ "type": "slime",      "cell": Vector2i(wave_0_start_x, 9) },
+	],
+	[ # slime 9
+
+	],
+	[ # slime 8
+
 	],
 	[ # wave 3
-		{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 6)  },
-		{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 10) },
-		{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 14) },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 6)  },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 10) },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 14) },
 		#{ "type": "slime",      "cell": Vector2i(wave_three_start_x, 8)  },
 		#{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 6)  },
 		#{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 10) },
