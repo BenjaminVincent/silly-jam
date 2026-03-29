@@ -15,10 +15,10 @@ var wave_thresholds = []
 var offset = 600
 
 var wave_0_start_x = 100
-var wave_1_start_x = 355
-var wave_2_start_x = 368
-var wave_3_start_x = 396
-var wave_4_start_x = 477
+var wave_1_start_x = 255
+var wave_2_start_x = 268
+var wave_3_start_x = 296
+var wave_4_start_x = 377
 
 var waves = [
 	[ # slimes
