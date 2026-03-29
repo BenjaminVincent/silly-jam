@@ -8,11 +8,6 @@ func _ready() -> void:
 	
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_quit_pressed() -> void:
 	print("quit game")
 	get_tree().quit()
