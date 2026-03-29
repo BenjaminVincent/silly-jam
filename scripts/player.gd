@@ -45,6 +45,12 @@ var end_line_top = Vector2i(15, 0)
 var end_line_middle = Vector2i(15, 1)
 var end_line_bottom = Vector2i(16, 1)
 
+var blue_rug_top = Vector2i(6, 0)
+var blue_rug_middle = Vector2i(6, 1)
+var blue_rug_bottom = Vector2i(7, 1)
+
+
+
 var ability_selector_shown: bool = false
 
 
@@ -168,7 +174,12 @@ func _physics_process(delta):
 				get_tree().paused = true
 				game.get_node("UI/AbilitySelector").show_with_tween(abilities)
 				
-		
+			if atlas_coords == blue_rug_top or atlas_coords == blue_rug_middle or atlas_coords == blue_rug_bottom:
+				get_tree().paused = true
+				end.get_score(inventory)
+				end.show()
+				
+			
 	
 		
 		if can_take_damage && (collision && collision.get_collider().is_in_group("enemies") || hit_by_enemy):
