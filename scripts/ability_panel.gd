@@ -14,7 +14,7 @@ var tween
 
 func _ready() -> void:
 	if ability:
-		label.text = ability.ability_name
+		label.text = ability.ability_name.to_upper()
 		description.text = ability.description
 		icon.texture = ability.icon
 #

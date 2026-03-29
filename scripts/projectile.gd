@@ -9,6 +9,8 @@ extends Node2D
 
 @export var rotation_speed = 20
 
+var damage = 1
+
 var velocity: Vector2
 var has_hit: bool = false
 
@@ -39,7 +41,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			if body.can_take_damage:
 				has_hit = true
 				audio_stream_player_2.play()
-				body.take_damage(1)
+				body.take_damage(damage)
 				sprite_2d.visible = false
 				area_2d.set_deferred("monitoring", false)
 			else:

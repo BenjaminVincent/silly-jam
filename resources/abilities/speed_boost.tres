@@ -7,7 +7,7 @@
 script = ExtResource("1_cijna")
 ability_name = "Speed Boost"
 icon = ExtResource("1_cuymi")
-description = "Grants a 30% speed boost for 5s"
+description = "Doubles movement speed for 5s"
 cooldown = 10.0
 duration = 5.0
 metadata/_custom_type_script = "uid://dqp6tfrlnt4d5"

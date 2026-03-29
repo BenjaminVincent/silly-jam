@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Ability" format=3 uid="uid://dhfipvcksm2ea"]
+
+[ext_resource type="Texture2D" uid="uid://wjxdx76cknjt" path="res://assets/strong_arm_icon.png" id="1_oatja"]
+[ext_resource type="Script" uid="uid://dqp6tfrlnt4d5" path="res://resources/ability.gd" id="2_cmjyg"]
+
+[resource]
+script = ExtResource("2_cmjyg")
+ability_name = "Strong-Arm"
+icon = ExtResource("1_oatja")
+description = "Provides a 5s size and damage boost to your projectiles"
+cooldown = 15.0
+duration = 5.0
+metadata/_custom_type_script = "uid://dqp6tfrlnt4d5"

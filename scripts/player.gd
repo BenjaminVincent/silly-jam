@@ -23,6 +23,11 @@ extends CharacterBody2D
 var stored_base_move_speed
 var ability_1_ready: bool = true
 var ability_2_ready: bool = true
+var projectile_scale = 1.0
+var stored_base_projectile_scale
+var base_damage = 1
+var stored_base_damage
+
 
 var projectile_speed = 300
 var spawn_pos = global_position
@@ -84,28 +89,36 @@ func use_ability(ability) -> void:
 	match ability.ability_name:
 		"Speed Boost":
 			_speed_boost()
-		"Scatter Shot":
-			_scatter_shot()
+		"Strong-Arm":
+			_strong_arm()
 		"Wave Clear":
 			_wave_clear()
 
 
 func _speed_boost() -> void:
 	stored_base_move_speed = movement_speed
-	movement_speed =  (movement_speed * 4.4) + movement_speed
+	movement_speed =  (movement_speed * 2) + movement_speed
 	print("new movement_speed: ", movement_speed)
 
-func _scatter_shot() -> void:
+func _strong_arm() -> void:
+	print("inside strong arm")
+	stored_base_projectile_scale = projectile_scale
+	stored_base_damage = base_damage
+	projectile_scale = 2
+	base_damage = 2
 	pass
 
 
 func _wave_clear() -> void:
-	pass
+	var viewport_rect = get_viewport_rect()
+	
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		if viewport_rect.has_point(enemy.global_position):
+			enemy.take_damage(999)
 
 
 func _start_ability_timers(ability, slot: int) -> void:
-	# trigger the visual on the button
-	#var ability_UI = get_tree().root.get_node("/root/Game/UI/AbilityUi")
+	
 	var buttons = ability_UI.h_box_container.get_children()
 	if slot - 1 < buttons.size():
 		buttons[slot - 1].start_cooldown(ability.duration, ability.cooldown)
@@ -126,6 +139,9 @@ func _end_ability(ability) -> void:
 	match ability.ability_name:
 		"Speed Boost":
 			movement_speed = stored_base_move_speed  # restore speed
+		"Strong-Arm":
+			projectile_scale = stored_base_projectile_scale
+			base_damage = stored_base_damage
 
 
 
@@ -182,7 +198,8 @@ func shoot():
 	get_tree().root.get_node_or_null("Game").add_child(projectile)
 	
 	projectile.global_position = global_position
-	
+	projectile.scale = Vector2(projectile.scale.x * projectile_scale, projectile.scale.y * projectile_scale)
+	projectile.damage = base_damage
 	var mouse_pos = get_global_mouse_position()
 	var direction = (mouse_pos - global_position).normalized()
 	

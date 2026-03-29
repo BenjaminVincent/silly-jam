@@ -8,4 +8,5 @@ script = ExtResource("1_xysp7")
 ability_name = "Wave Clear"
 icon = ExtResource("1_fp5cr")
 description = "clears all enemies on the screen"
+cooldown = 30.0
 metadata/_custom_type_script = "uid://dqp6tfrlnt4d5"
