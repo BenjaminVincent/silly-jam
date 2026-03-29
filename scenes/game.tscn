@@ -4,12 +4,22 @@
 [ext_resource type="PackedScene" uid="uid://c5s1iq2bl81r5" path="res://scenes/level.tscn" id="2_feb5d"]
 [ext_resource type="Script" uid="uid://d2luxmq2o6c85" path="res://scripts/ability_selector.gd" id="3_iywne"]
 [ext_resource type="Texture2D" uid="uid://chptu4tsxui4s" path="res://assets/target_pointer.png" id="3_lnu2h"]
+[ext_resource type="Script" uid="uid://dqp6tfrlnt4d5" path="res://resources/ability.gd" id="4_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://w4kuesrpj7g5" path="res://scenes/UI/ability_panel.tscn" id="4_lbhrr"]
 [ext_resource type="Resource" uid="uid://buf6qacuqtpux" path="res://resources/abilities/speed_boost.tres" id="5_p57ef"]
-[ext_resource type="Resource" uid="uid://dhfipvcksm2ea" path="res://resources/abilities/strong_arm.tres" id="6_gee14"]
 [ext_resource type="Resource" uid="uid://byiiu6cuw178e" path="res://resources/abilities/wave_clear.tres" id="7_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://wjxdx76cknjt" path="res://assets/strong_arm_icon.png" id="7_dinhu"]
 [ext_resource type="PackedScene" uid="uid://cq6l0fgm2b7d5" path="res://scenes/ability_ui.tscn" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://dgcepy3yf7tqx" path="res://scenes/UI/game_over_panel.tscn" id="10_vtaks"]
+
+[sub_resource type="Resource" id="Resource_kvuet"]
+script = ExtResource("4_kvpfn")
+ability_name = "Strong-Arm"
+icon = ExtResource("7_dinhu")
+description = "Provides a 5s size and damage boost to your projectiles"
+cooldown = 15.0
+duration = 5.0
+metadata/_custom_type_script = "uid://dqp6tfrlnt4d5"
 
 [node name="Game" type="Node2D" unique_id=26831954]
 process_mode = 3
@@ -35,54 +45,6 @@ offset_right = 640.0
 offset_bottom = 360.0
 color = Color(0.18039216, 0.13333334, 0.18431373, 0.3882353)
 
-[node name="AbilityPanel" parent="UI/AbilitySelector" unique_id=1163034295 instance=ExtResource("4_lbhrr")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 87.0
-offset_top = 112.0
-offset_right = 87.0
-offset_bottom = 112.0
-grow_horizontal = 1
-grow_vertical = 1
-ability = ExtResource("5_p57ef")
-
-[node name="AbilityPanel2" parent="UI/AbilitySelector" unique_id=1547000113 instance=ExtResource("4_lbhrr")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 249.0
-offset_top = 112.0
-offset_right = 249.0
-offset_bottom = 112.0
-grow_horizontal = 1
-grow_vertical = 1
-ability = ExtResource("6_gee14")
-
-[node name="AbilityPanel3" parent="UI/AbilitySelector" unique_id=136686188 instance=ExtResource("4_lbhrr")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 411.0
-offset_top = 112.0
-offset_right = 411.0
-offset_bottom = 112.0
-grow_horizontal = 1
-grow_vertical = 1
-ability = ExtResource("7_0tnpc")
-
 [node name="Label" type="Label" parent="UI/AbilitySelector" unique_id=746183040]
 layout_mode = 0
 offset_top = 28.0
@@ -92,6 +54,37 @@ theme_override_font_sizes/font_size = 32
 text = "PICK ONE"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/AbilitySelector" unique_id=258116614]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -245.0
+offset_top = -91.0
+offset_right = 105.0
+offset_bottom = 165.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 175
+alignment = 1
+
+[node name="AbilityPanel" parent="UI/AbilitySelector/HBoxContainer" unique_id=1163034295 instance=ExtResource("4_lbhrr")]
+visible = false
+layout_mode = 2
+ability = ExtResource("5_p57ef")
+
+[node name="AbilityPanel2" parent="UI/AbilitySelector/HBoxContainer" unique_id=1547000113 instance=ExtResource("4_lbhrr")]
+visible = false
+layout_mode = 2
+ability = SubResource("Resource_kvuet")
+
+[node name="AbilityPanel3" parent="UI/AbilitySelector/HBoxContainer" unique_id=136686188 instance=ExtResource("4_lbhrr")]
+visible = false
+layout_mode = 2
+ability = ExtResource("7_0tnpc")
 
 [node name="Cursor" type="Sprite2D" parent="UI" unique_id=714169472]
 texture = ExtResource("3_lnu2h")
