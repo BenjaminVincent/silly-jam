@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dgcepy3yf7tqx"]
 
-[ext_resource type="Script" path="res://scenes/UI/game_over_panel.gd" id="1_by1o2"]
+[ext_resource type="Script" uid="uid://ctih7rwk084bq" path="res://scripts/game_over_panel.gd" id="1_by1o2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dj0wr"]
 
@@ -48,3 +48,6 @@ layout_mode = 2
 [node name="Quit" type="Button" parent="HBoxContainer" unique_id=1698486447]
 layout_mode = 2
 text = "    Quit     "
+
+[connection signal="pressed" from="HBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="HBoxContainer/Quit" to="." method="_on_quit_pressed"]
