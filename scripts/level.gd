@@ -5,20 +5,22 @@ extends Node2D
 @onready var forground: TileMapLayer = $Forground
 @onready var background: TileMapLayer = $Background
 
-var scroll_speed = 200 #40
+var scroll_speed = 40 #40
 var rock_tile = Vector2i(14, 2)
 
 #var level_one_end = 20 #200
 var level_one_cell_choords
 var level_one_global_end
-#@onready var select_ability_screen: Control = $UI/SelectAbilityScreen
 var ability_selector_screen
 
+var level_one_ended: bool = false
+#var level_two_ended: bool = false
+#var level_three_ended: bool = false
 
 func _ready() -> void:
 	randomize()
 	
-	level_one_cell_choords = forground.map_to_local(Vector2i(40, 0)) # 200
+	level_one_cell_choords = forground.map_to_local(Vector2i(200, 0)) # 200
 	level_one_global_end = forground.to_global(level_one_cell_choords)
 	
 	print("level_one_cell_choords:" , level_one_cell_choords)
@@ -32,7 +34,8 @@ func _process(delta):
 	forground.position.x -= scroll_speed * delta
 	
 	
-	if forground.position.x < -level_one_global_end.x + 400:
+	if not level_one_ended and forground.position.x < -level_one_global_end.x + 400:
+		level_one_ended = true
 		get_tree().paused = true
 		ability_selector_screen.show()
 

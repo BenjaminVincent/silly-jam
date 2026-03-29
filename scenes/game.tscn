@@ -72,8 +72,9 @@ grow_vertical = 1
 
 [node name="Label" type="Label" parent="UI/AbilitySelector" unique_id=746183040]
 layout_mode = 0
+offset_top = 28.0
 offset_right = 640.0
-offset_bottom = 84.0
+offset_bottom = 112.0
 theme_override_font_sizes/font_size = 32
 text = "PICK ONE"
 horizontal_alignment = 1

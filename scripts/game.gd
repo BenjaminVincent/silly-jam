@@ -19,7 +19,9 @@ func _process(_delta: float) -> void:
 	if ability_selector.visible:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		cursor.hide()
-
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+		cursor.show()
 
 
 
