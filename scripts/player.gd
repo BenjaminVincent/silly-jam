@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var game = get_tree().root.get_node("/root/Game")
 @onready var ability_UI = get_tree().root.get_node("/root/Game/UI/AbilityUi")
 @onready var game_over_panel = get_tree().root.get_node("/root/Game/UI/game_over_panel")
+@onready var health_ui = get_tree().root.get_node("/root/Game/UI/HealthUi")
 @export var health = 3
 @export var movement_speed = 50
 @export var fire_rate = 0.2
@@ -48,7 +49,7 @@ func _ready() -> void:
 	add_to_group("player")
 	animation_player.play("walk_right")
 	level = get_tree().root.get_node_or_null("Game/level")
-
+	health_ui._init_health_ui(health)
 
 
 func get_input():
@@ -228,6 +229,7 @@ func take_damage(value: int) -> void:
 	animation_player.play("hit")
 	player_hit.play()
 	health -= value
+	health_ui._update_health_ui(health)
 
 
 

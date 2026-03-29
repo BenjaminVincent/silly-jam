@@ -2,5 +2,5 @@
 
 [ext_resource type="Texture2D" uid="uid://bscejwj4wo4a" path="res://assets/heart_icon.png" id="1_hsgrm"]
 
-[node name="HealthIcon" type="Sprite2D" unique_id=174384030]
+[node name="HealthIcon" type="TextureRect" unique_id=321986999]
 texture = ExtResource("1_hsgrm")
