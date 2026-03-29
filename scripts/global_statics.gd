@@ -1,3 +1,3 @@
 extends Node
 
-var scroll_speed = 80
+var scroll_speed = 100

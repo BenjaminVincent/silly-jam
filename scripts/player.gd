@@ -74,7 +74,7 @@ func _physics_process(delta):
 	
 	if global_position.x < -off_screen_death_threshold:
 		dead = true
-		level.scroll_speed = 0
+		GlobalStatics.scroll_speed = 0
 		queue_free()
 
 
@@ -131,7 +131,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				set_collision_layer_value(1, true)
 			else:
 				dead = true
-				level.scroll_speed = 0
+				GlobalStatics.scroll_speed = 0
 				animation_player.play("death")
 		"death":
 			print("player has died")
