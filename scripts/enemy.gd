@@ -32,9 +32,7 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	
-	move_and_collide(self.velocity * delta)
-	
-	z_index = int(global_position.y)
+	z_index = clampi(int(global_position.y), -4096, 4096)
 	
 	var collision = move_and_collide(velocity * delta)
 	
