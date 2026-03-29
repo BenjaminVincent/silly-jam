@@ -4,12 +4,16 @@ var tween
 
 @onready var texture_button: TextureButton = $TextureButton
 @onready var ability_selection_menu = get_tree().root.get_node("/root/Game/UI/AbilitySelector")
+@onready var label: Label = $Label
+@onready var description: RichTextLabel = $Description
 
 @export var ability: Ability
 
 
 func _ready() -> void:
-	pass
+	if ability:
+		label.text = ability.ability_name
+		description.text = ability.description
 #
 #func _on_mouse_entered() -> void:
 	#print("mouse over")
@@ -24,8 +28,8 @@ func _ready() -> void:
 func _on_texture_button_mouse_entered() -> void:
 	tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
-	texture_button.scale = Vector2(0.8, 0.8)
-	tween.tween_property(texture_button, "scale", Vector2(1.0, 1.0), 0.2)
+	self.scale = Vector2(0.8, 0.8)
+	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.2)
 
 
 func _on_texture_button_pressed() -> void:
