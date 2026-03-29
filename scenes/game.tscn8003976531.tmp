@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://c2ii5tb06hcb4"]
+
+[ext_resource type="Script" uid="uid://budeyttglxew5" path="res://scripts/game.gd" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://d2luxmq2o6c85" path="res://scripts/ability_selector.gd" id="3_iywne"]
+[ext_resource type="Texture2D" uid="uid://chptu4tsxui4s" path="res://assets/target_pointer.png" id="3_lnu2h"]
+[ext_resource type="Script" uid="uid://dqp6tfrlnt4d5" path="res://resources/ability.gd" id="4_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://w4kuesrpj7g5" path="res://scenes/UI/ability_panel.tscn" id="4_lbhrr"]
+[ext_resource type="Resource" uid="uid://buf6qacuqtpux" path="res://resources/abilities/speed_boost.tres" id="5_p57ef"]
+[ext_resource type="Resource" uid="uid://byiiu6cuw178e" path="res://resources/abilities/wave_clear.tres" id="7_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://wjxdx76cknjt" path="res://assets/strong_arm_icon.png" id="7_dinhu"]
+[ext_resource type="PackedScene" uid="uid://cq6l0fgm2b7d5" path="res://scenes/ability_ui.tscn" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://dgcepy3yf7tqx" path="res://scenes/UI/game_over_panel.tscn" id="10_vtaks"]
+[ext_resource type="PackedScene" uid="uid://dw73vlyue7pql" path="res://scenes/UI/health_ui.tscn" id="11_kvuet"]
+[ext_resource type="AudioStream" uid="uid://b0uj5cawrn1h1" path="res://audio/bg_music.mp3" id="12_dinhu"]
+[ext_resource type="PackedScene" uid="uid://42ymejfvqc8t" path="res://scenes/start.tscn" id="13_kvuet"]
+[ext_resource type="PackedScene" uid="uid://cwobeusc3yki3" path="res://scenes/end.tscn" id="14_trtic"]
+
+[sub_resource type="Resource" id="Resource_kvuet"]
+script = ExtResource("4_kvpfn")
+ability_name = "Strong-Arm"
+icon = ExtResource("7_dinhu")
+description = "Provides a 5s size and damage boost to your projectiles"
+cooldown = 15.0
+duration = 5.0
+metadata/_custom_type_script = "uid://dqp6tfrlnt4d5"
+
+[node name="Game" type="Node2D" unique_id=26831954]
+process_mode = 3
+script = ExtResource("1_e2o6t")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1715697616]
+
+[node name="AbilitySelector" type="Control" parent="UI" unique_id=1612222191]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_iywne")
+
+[node name="ColorRect" type="ColorRect" parent="UI/AbilitySelector" unique_id=1701324808]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.18039216, 0.13333334, 0.18431373, 0.3882353)
+
+[node name="Label" type="Label" parent="UI/AbilitySelector" unique_id=746183040]
+layout_mode = 0
+offset_top = 28.0
+offset_right = 640.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 32
+text = "PICK ONE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/AbilitySelector" unique_id=258116614]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -245.0
+offset_top = -91.0
+offset_right = 105.0
+offset_bottom = 165.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 175
+alignment = 1
+
+[node name="AbilityPanel" parent="UI/AbilitySelector/HBoxContainer" unique_id=1163034295 instance=ExtResource("4_lbhrr")]
+visible = false
+layout_mode = 2
+ability = ExtResource("5_p57ef")
+
+[node name="AbilityPanel2" parent="UI/AbilitySelector/HBoxContainer" unique_id=1547000113 instance=ExtResource("4_lbhrr")]
+visible = false
+layout_mode = 2
+ability = SubResource("Resource_kvuet")
+
+[node name="AbilityPanel3" parent="UI/AbilitySelector/HBoxContainer" unique_id=136686188 instance=ExtResource("4_lbhrr")]
+visible = false
+layout_mode = 2
+ability = ExtResource("7_0tnpc")
+
+[node name="Cursor" type="Sprite2D" parent="UI" unique_id=714169472]
+texture = ExtResource("3_lnu2h")
+
+[node name="AbilityUi" parent="UI" unique_id=474567130 instance=ExtResource("9_0tnpc")]
+process_mode = 1
+
+[node name="game_over_panel" parent="UI" unique_id=983951085 instance=ExtResource("10_vtaks")]
+visible = false
+
+[node name="HealthUi" parent="UI" unique_id=2078613753 instance=ExtResource("11_kvuet")]
+offset_left = 19.0
+offset_top = 17.0
+offset_right = 19.0
+offset_bottom = 17.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1038882666]
+stream = ExtResource("12_dinhu")
+volume_db = -11.0
+parameters/looping = true
+
+[node name="Start" parent="." unique_id=1527552250 instance=ExtResource("13_kvuet")]
+offset_left = -1.0
+offset_right = -1.0
+
+[node name="End" parent="." unique_id=1334382889 instance=ExtResource("14_trtic")]
+visible = false
+offset_left = 320.0
+offset_top = 180.0
+offset_right = 320.0
+offset_bottom = 180.0

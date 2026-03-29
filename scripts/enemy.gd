@@ -42,7 +42,7 @@ func _physics_process(delta):
 
 	if dead:
 		velocity.y = 0
-		velocity.x = -40 # Speed of the level
+		velocity.x = -GlobalStatics.scroll_speed
 	elif player:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = lerp(velocity, direction * speed, follow_delay)

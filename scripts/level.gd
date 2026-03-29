@@ -14,7 +14,7 @@ var current_wave = 0
 var wave_thresholds = []
 
 var wave_0_start_x = 190
-var wave_1_start_x = 329
+var wave_1_start_x = 10
 var wave_2_start_x = 368
 var wave_3_start_x = 396
 var wave_4_start_x = 477
@@ -89,8 +89,6 @@ var waves = [
 	],
 ]
 
-
-
 func _ready() -> void:
 	randomize()
 	forground.add_to_group("forground")
@@ -100,14 +98,13 @@ func _ready() -> void:
 		-forground.to_global(forground.map_to_local(Vector2i(wave_1_start_x, 0))).x,
 		-forground.to_global(forground.map_to_local(Vector2i(wave_2_start_x, 0))).x,
 		-forground.to_global(forground.map_to_local(Vector2i(wave_3_start_x, 0))).x,
+		-forground.to_global(forground.map_to_local(Vector2i(wave_4_start_x, 0))).x,
 	]
 	
 	level_one_cell_choords = forground.map_to_local(Vector2i(200, 0))
 	level_one_global_end = forground.to_global(level_one_cell_choords)
 	ability_selector_screen = get_parent().get_node("UI/AbilitySelector")
-	spawn_next_wave()  # kicks off wave 1 on start
-
-
+	spawn_wave(0)
 
 func _process(delta):
 	forground.position.x -= GlobalStatics.scroll_speed * delta
@@ -116,22 +113,15 @@ func _process(delta):
 	if current_wave < wave_thresholds.size():
 		if forground.position.x < wave_thresholds[current_wave]:
 			current_wave += 1
-			spawn_next_wave()
+			spawn_wave(current_wave)
 
-
-
-
-func spawn_next_wave():
-	
-	if current_wave >= waves.size():
+func spawn_wave(index: int):
+	if index >= waves.size():
 		print("all waves complete")
 		return
-	
-	for entry in waves[current_wave]:
+	print("spawning wave: ", index)
+	for entry in waves[index]:
 		spawn_enemy_at(entry.type, entry.cell)
-		#await get_tree().create_timer(0.8).timeout
-
-
 
 func spawn_enemy_at(type: String, cell: Vector2i):
 	var path = "res://scenes/enemies/" + type + ".tscn"
