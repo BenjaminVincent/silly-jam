@@ -109,12 +109,14 @@ func _strong_arm() -> void:
 	pass
 
 
+
 func _wave_clear() -> void:
 	var viewport_rect = get_viewport_rect()
 	
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		if viewport_rect.has_point(enemy.global_position):
 			enemy.take_damage(999)
+
 
 
 func _start_ability_timers(ability, slot: int) -> void:

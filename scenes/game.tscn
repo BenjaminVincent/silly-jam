@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://dhfipvcksm2ea" path="res://resources/abilities/strong_arm.tres" id="6_gee14"]
 [ext_resource type="Resource" uid="uid://byiiu6cuw178e" path="res://resources/abilities/wave_clear.tres" id="7_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://cq6l0fgm2b7d5" path="res://scenes/ability_ui.tscn" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://dgcepy3yf7tqx" path="res://scenes/UI/game_over_panel.tscn" id="10_vtaks"]
 
 [node name="Game" type="Node2D" unique_id=26831954]
 process_mode = 3
@@ -97,3 +98,5 @@ texture = ExtResource("3_lnu2h")
 
 [node name="AbilityUi" parent="UI" unique_id=474567130 instance=ExtResource("9_0tnpc")]
 process_mode = 1
+
+[node name="game_over_panel" parent="UI" unique_id=983951085 instance=ExtResource("10_vtaks")]

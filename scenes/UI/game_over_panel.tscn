@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dgcepy3yf7tqx"]
 
-[ext_resource type="Script" uid="uid://ctih7rwk084bq" path="res://scenes/UI/game_over_panel.gd" id="1_by1o2"]
+[ext_resource type="Script" path="res://scenes/UI/game_over_panel.gd" id="1_by1o2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dj0wr"]
 
@@ -15,12 +15,10 @@ script = ExtResource("1_by1o2")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=86483356]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 30.999996
-offset_right = 682.4212
-offset_bottom = 366.42267
+offset_right = 794.9476
+offset_bottom = 407.94647
 scale = Vector2(0.8050845, 0.88246876)
-color = Color(0.5882353, 0.42352942, 0.42352942, 1)
+color = Color(0.18039216, 0.13333334, 0.18431373, 0.44705883)
 
 [node name="Label" type="Label" parent="." unique_id=812431533]
 modulate = Color(0.18039216, 0.13333334, 0.18431373, 1)
