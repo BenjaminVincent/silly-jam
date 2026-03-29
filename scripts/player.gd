@@ -38,10 +38,7 @@ func get_input():
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	
-	if dead:
-		velocity = Vector2.ZERO
-		level.scroll_speed = 0
-	elif Input.is_action_pressed("shoot") && shot_ready:
+	if Input.is_action_pressed("shoot") && shot_ready:
 		shoot()
 		shot_ready = false
 		await get_tree().create_timer(fire_rate).timeout
@@ -55,26 +52,29 @@ func get_input():
 
 func _physics_process(delta):
 	
-	get_input()
-	
-	move_and_collide(self.velocity * delta)
-	
 	z_index = int(global_position.y)
 	
-	var collision = move_and_collide(velocity * delta)
+	if !dead:
+		get_input()
 	
-	if can_take_damage && (collision && collision.get_collider().is_in_group("enemies") || hit_by_enemy):
-		audio_stream_player.play()
-		take_damage(1)
-	
-	var rect = get_viewport_rect()
-	var bounds = collision_shape_2d.shape.size + buffer
-	
-	global_position = global_position.clamp(rect.end * -1  , rect.end - bounds)
+		move_and_collide(self.velocity * delta)
+		
+		
+		
+		var collision = move_and_collide(velocity * delta)
+		
+		if can_take_damage && (collision && collision.get_collider().is_in_group("enemies") || hit_by_enemy):
+			audio_stream_player.play()
+			take_damage(1)
+		
+		var rect = get_viewport_rect()
+		var bounds = collision_shape_2d.shape.size + buffer
+		
+		global_position = global_position.clamp(rect.end * -1  , rect.end - bounds)
 	
 	if global_position.x < -off_screen_death_threshold:
 		dead = true
-		get_input()
+		level.scroll_speed = 0
 		queue_free()
 
 
@@ -131,6 +131,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				set_collision_layer_value(1, true)
 			else:
 				dead = true
+				level.scroll_speed = 0
 				animation_player.play("death")
 		"death":
 			print("player has died")
