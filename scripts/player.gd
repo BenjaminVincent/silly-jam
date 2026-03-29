@@ -41,7 +41,6 @@ func get_input():
 	if dead:
 		velocity = Vector2.ZERO
 		level.scroll_speed = 0
-		return
 	elif Input.is_action_pressed("shoot") && shot_ready:
 		shoot()
 		shot_ready = false
@@ -75,6 +74,8 @@ func _physics_process(delta):
 	
 	if global_position.x < -off_screen_death_threshold:
 		dead = true
+		get_input()
+		queue_free()
 
 
 
@@ -130,7 +131,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				set_collision_layer_value(1, true)
 			else:
 				dead = true
-				
 				animation_player.play("death")
 		"death":
 			print("player has died")
