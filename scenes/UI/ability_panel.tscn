@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cot68mwi7np8u" path="res://assets/item_panel_bg_small.png" id="1_27uwx"]
 [ext_resource type="Texture2D" uid="uid://dtalh3i274u2s" path="res://assets/wave_clear_icon.png" id="3_isc8j"]
 
+[sub_resource type="FontVariation" id="FontVariation_isc8j"]
+spacing_top = 2
+baseline_offset = 0.205
+
 [node name="AbilityPanel" type="Panel" unique_id=1163034295]
 anchors_preset = 8
 anchor_left = 0.5
@@ -25,9 +29,9 @@ texture_normal = ExtResource("1_27uwx")
 [node name="Label" type="Label" parent="." unique_id=1628444444]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 8.0
+offset_top = 12.0
 offset_right = 136.0
-offset_bottom = 27.0
+offset_bottom = 31.0
 theme_override_font_sizes/font_size = 12
 text = "Ability"
 horizontal_alignment = 1
@@ -36,10 +40,11 @@ vertical_alignment = 1
 [node name="Description" type="RichTextLabel" parent="." unique_id=602528803]
 layout_mode = 0
 offset_left = 11.0
-offset_top = 75.0
+offset_top = 77.0
 offset_right = 133.0
-offset_bottom = 168.0
-theme_override_font_sizes/normal_font_size = 10
+offset_bottom = 176.0
+theme_override_fonts/normal_font = SubResource("FontVariation_isc8j")
+theme_override_font_sizes/normal_font_size = 8
 text = "This is a description for the ability"
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1765970811]
