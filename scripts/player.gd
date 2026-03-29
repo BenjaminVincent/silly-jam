@@ -12,7 +12,7 @@ extends CharacterBody2D
 @onready var health_ui = get_tree().root.get_node("/root/Game/UI/HealthUi")
 
 
-@export var health = 10
+@export var health = 3
 @export var movement_speed = 50
 @export var fire_rate = 0.2
 @export var off_screen_death_threshold = 32
