@@ -9,8 +9,9 @@ extends CharacterBody2D
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 
-@export var health = 2
+@export var health = 3
 @export var movement_speed = 50
+@export var fire_rate = 0.2 
 
 var projectile_speed = 300
 var spawn_pos = global_position
@@ -19,6 +20,7 @@ var inventory: Dictionary = {}
 var can_take_damage = true
 var dead: bool = false
 var hit_by_enemy = false
+var shot_ready = true
 
 var level
 
@@ -34,19 +36,19 @@ func _ready() -> void:
 func get_input():
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
+	
 	if dead:
 		velocity = Vector2.ZERO
 		return
-	velocity = input_dir * movement_speed
-
-
-
-func _input(event):
-	
-	if dead: return
-	
-	if event.is_action_pressed("shoot"):
+	elif Input.is_action_pressed("shoot") && shot_ready:
 		shoot()
+		shot_ready = false
+		await get_tree().create_timer(fire_rate).timeout
+		await get_tree().process_frame
+		shot_ready = true
+		
+		
+	velocity = input_dir * movement_speed
 
 
 
@@ -83,6 +85,7 @@ func shoot():
 	var direction = (mouse_pos - global_position).normalized()
 	
 	projectile.velocity = direction * projectile_speed
+	
 
 
 
