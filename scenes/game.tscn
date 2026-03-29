@@ -100,3 +100,4 @@ texture = ExtResource("3_lnu2h")
 process_mode = 1
 
 [node name="game_over_panel" parent="UI" unique_id=983951085 instance=ExtResource("10_vtaks")]
+visible = false
