@@ -5,23 +5,36 @@ extends Node2D
 @onready var forground: TileMapLayer = $Forground
 @onready var background: TileMapLayer = $Background
 
-var scroll_speed = 40
+var scroll_speed = 200 #40
 var rock_tile = Vector2i(14, 2)
 
-
-
-func _process(delta):
-	forground.position.x -= scroll_speed * delta
-	
+#var level_one_end = 20 #200
+var level_one_cell_choords
+var level_one_global_end
+#@onready var select_ability_screen: Control = $UI/SelectAbilityScreen
+var ability_selector_screen
 
 
 func _ready() -> void:
 	randomize()
 	
-	spawn_rocks(60)
+	level_one_cell_choords = forground.map_to_local(Vector2i(40, 0)) # 200
+	level_one_global_end = forground.to_global(level_one_cell_choords)
 	
+	print("level_one_cell_choords:" , level_one_cell_choords)
 	spawn_enemy("slime", 4)
+	
 	spawn_enemy("blue_slime", 4)
+	ability_selector_screen = get_parent().get_node("UI/AbilitySelector")
+	
+
+func _process(delta):
+	forground.position.x -= scroll_speed * delta
+	
+	
+	if forground.position.x < -level_one_global_end.x + 400:
+		get_tree().paused = true
+		ability_selector_screen.show()
 
 
 
