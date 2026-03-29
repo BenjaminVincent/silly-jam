@@ -13,15 +13,14 @@ var current_wave = 0
 
 var wave_thresholds = []
 
-var wave_one_start_x = 20
+var wave_one_start_x = 50
 var wave_two_start_x = 80
 var wave_three_start_x = 120
-
 
 var waves = [
 	[ # wave 1
 		{ "type": "slime",      "cell": Vector2i(wave_one_start_x, 10) },
-		{ "type": "blue_slime",      "cell": Vector2i(wave_one_start_x, 13) },
+		{ "type": "slime",      "cell": Vector2i(wave_one_start_x, 13) },
 		{ "type": "slime",      "cell": Vector2i(wave_one_start_x, 16) },
 	],
 	[ # wave 2
@@ -33,17 +32,19 @@ var waves = [
 		{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 6)  },
 		{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 10) },
 		{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 14) },
-		{ "type": "slime",      "cell": Vector2i(wave_three_start_x, 8)  },
-		{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 6)  },
-		{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 10) },
-		{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 14) },
-		{ "type": "slime",      "cell": Vector2i(wave_three_start_x, 8)  },
+		#{ "type": "slime",      "cell": Vector2i(wave_three_start_x, 8)  },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 6)  },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 10) },
+		#{ "type": "blue_slime", "cell": Vector2i(wave_three_start_x, 14) },
+		#{ "type": "slime",      "cell": Vector2i(wave_three_start_x, 8)  },
 	],
 ]
 
+
+
 func _ready() -> void:
 	randomize()
-	
+	forground.add_to_group("forground")
 	
 	wave_thresholds = [
 		-forground.to_global(forground.map_to_local(Vector2i(wave_one_start_x, 0))).x,
@@ -56,6 +57,8 @@ func _ready() -> void:
 	ability_selector_screen = get_parent().get_node("UI/AbilitySelector")
 	spawn_next_wave()  # kicks off wave 1 on start
 
+
+
 func _process(delta):
 	forground.position.x -= GlobalStatics.scroll_speed * delta
 	secondary_forground.position.x -= GlobalStatics.scroll_speed * delta
@@ -63,22 +66,18 @@ func _process(delta):
 	if current_wave < wave_thresholds.size():
 		if forground.position.x < wave_thresholds[current_wave]:
 			current_wave += 1
-			print("calling next wave! ", current_wave)
 			spawn_next_wave()
-	
-	if not level_one_ended and forground.position.x < -level_one_global_end.x + 175:
-		level_one_ended = true
-		get_tree().paused = true
-		ability_selector_screen.show()
+
 
 
 
 func spawn_next_wave():
-	if current_wave > waves.size():
+	
+	if current_wave >= waves.size():
 		print("all waves complete")
 		return
 	
-	for entry in waves[current_wave - 1]:  # -1 because _process already incremented it
+	for entry in waves[current_wave]:
 		spawn_enemy_at(entry.type, entry.cell)
 		await get_tree().create_timer(0.8).timeout
 
@@ -91,9 +90,3 @@ func spawn_enemy_at(type: String, cell: Vector2i):
 	var global_pos = background.to_global(local_pos)
 	enemy.position = global_pos
 	add_child(enemy)
-
-func spawn_rocks(n: int) -> void:
-	for i in range(0, n):
-		var x_val = randi_range(15, 200)
-		var y_val = randi_range(5, 16)
-		forground.set_cell(Vector2i(x_val, y_val), 0, rock_tile)

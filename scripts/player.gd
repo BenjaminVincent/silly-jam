@@ -8,12 +8,14 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var player_hit: AudioStreamPlayer = $player_hit
 @onready var game_over: AudioStreamPlayer = $game_over
-
+@onready var game = get_tree().root.get_node("/root/Game")
 
 @export var health = 3
 @export var movement_speed = 50
 @export var fire_rate = 0.2
 @export var off_screen_death_threshold = 32
+
+@export var abilities: Array = []
 
 var projectile_speed = 300
 var spawn_pos = global_position
@@ -26,6 +28,11 @@ var shot_ready = true
 
 var level
 
+var end_line_top = Vector2i(15, 0)
+var end_line_middle = Vector2i(15, 1)
+var end_line_bottom = Vector2i(16, 1)
+
+var ability_selector_shown: bool = false
 
 
 func _ready() -> void:
@@ -36,8 +43,8 @@ func _ready() -> void:
 
 
 func get_input():
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
+	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	if Input.is_action_pressed("shoot") && shot_ready:
 		shoot()
@@ -47,7 +54,7 @@ func get_input():
 		shot_ready = true
 		
 		
-	velocity = input_dir * movement_speed
+	velocity = input_dir.normalized() * movement_speed
 
 
 
@@ -58,11 +65,21 @@ func _physics_process(delta):
 	if !dead:
 		get_input()
 	
-		move_and_collide(self.velocity * delta)
-		
-		
-		
 		var collision = move_and_collide(velocity * delta)
+		
+		var forground = get_tree().get_first_node_in_group("forground")
+		if forground and not ability_selector_shown:
+			
+			var tile_pos = forground.local_to_map(forground.to_local(global_position))
+			var atlas_coords = forground.get_cell_atlas_coords(tile_pos)
+			
+			if atlas_coords == end_line_top or atlas_coords == end_line_middle or atlas_coords == end_line_bottom:
+				ability_selector_shown = true
+				get_tree().paused = true
+				game.get_node("UI/AbilitySelector").show()
+				
+		
+		
 		
 		if can_take_damage && (collision && collision.get_collider().is_in_group("enemies") || hit_by_enemy):
 			player_hit.play()
@@ -76,6 +93,14 @@ func _physics_process(delta):
 	if global_position.x < -off_screen_death_threshold:
 		_death()
 		queue_free()
+
+
+
+
+func reset_ability_selector():
+	print("RESETTING ABILITY SELECTOR")
+	ability_selector_shown = false
+
 
 
 
@@ -101,8 +126,6 @@ func add_to_inventory(item_name, gold) -> void:
 		inventory[item_name].quantity += 1
 	else:
 		inventory[item_name] = { "quantity": 1, "gold": gold }
-	
-	print("inventory: ", inventory)
 
 
 

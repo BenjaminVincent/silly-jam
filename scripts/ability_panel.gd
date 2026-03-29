@@ -26,6 +26,10 @@ func _on_texture_button_mouse_entered() -> void:
 
 
 func _on_texture_button_pressed() -> void:
+	
 	ability_selection_menu.hide()
 	get_tree().paused = false
 	
+	await get_tree().create_timer(6).timeout
+	await get_tree().process_frame
+	get_tree().get_first_node_in_group("player").reset_ability_selector()
