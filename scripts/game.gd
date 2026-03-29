@@ -2,7 +2,6 @@ extends Node2D
 
 
 
-@onready var level: Node2D = $level
 @onready var cursor: Sprite2D = $UI/Cursor
 @onready var ability_selector: Control = $UI/AbilitySelector
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
