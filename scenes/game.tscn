@@ -112,6 +112,7 @@ offset_left = -1.0
 offset_right = -1.0
 
 [node name="End" parent="." unique_id=1334382889 instance=ExtResource("14_trtic")]
+visible = false
 offset_left = 320.0
 offset_top = 180.0
 offset_right = 320.0
