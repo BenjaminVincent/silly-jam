@@ -101,7 +101,6 @@ func _death() -> void:
 		loot = load("res://scenes/loot.tscn").instantiate()
 		loot.position = position
 		loot.loot_data = loot_drop
-		print("item dropping: ", loot.loot_data)
 		get_parent().add_child(loot)
 		
 	queue_free()

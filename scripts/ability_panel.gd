@@ -6,8 +6,7 @@ var tween
 @onready var ability_selection_menu = get_tree().root.get_node("/root/Game/UI/AbilitySelector")
 
 func _ready() -> void:
-	print("IS READY!!!!!!!!!!")
-
+	pass
 #
 #func _on_mouse_entered() -> void:
 	#print("mouse over")
