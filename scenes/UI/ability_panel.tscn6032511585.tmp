@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://w4kuesrpj7g5"]
+
+[ext_resource type="Script" uid="uid://b17yudxq733bn" path="res://scripts/ability_panel.gd" id="1_8iljg"]
+[ext_resource type="Texture2D" uid="uid://cot68mwi7np8u" path="res://assets/item_panel_bg_small.png" id="1_27uwx"]
+
+[node name="AbilityPanel" type="Panel" unique_id=1163034295]
+script = ExtResource("1_8iljg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=650803209]
+texture = ExtResource("1_27uwx")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

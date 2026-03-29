@@ -4,6 +4,7 @@ extends Node2D
 
 @onready var level: Node2D = $level
 @onready var cursor: Sprite2D = $UI/Cursor
+@onready var ability_selector: Control = $UI/AbilitySelector
 
 
 
@@ -14,6 +15,11 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	cursor.position = get_global_mouse_position()
+	
+	if ability_selector.visible:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		cursor.hide()
+
 
 
 
