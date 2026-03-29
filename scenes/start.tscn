@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dkcfk06oilpuo" path="res://scripts/start.gd" id="1_bodal"]
 [ext_resource type="Texture2D" uid="uid://dvlgja0ufbf0s" path="res://assets/rufus_goes_to_town_start_screen.png" id="1_jaeev"]
 [ext_resource type="Texture2D" uid="uid://ca6keldaewo4e" path="res://assets/button.png" id="2_u80x2"]
+[ext_resource type="Texture2D" uid="uid://be2cc8ccppqo3" path="res://assets/button_hover.png" id="4_kdmts"]
 
 [node name="Start" type="Control" unique_id=1527552250]
 layout_mode = 3
@@ -28,20 +29,23 @@ text = "RUFUS GOES TO TOWN"
 
 [node name="TextureRect" type="TextureButton" parent="." unique_id=1323162382]
 layout_mode = 0
-offset_left = 356.0
-offset_top = 228.0
-offset_right = 488.0
-offset_bottom = 285.0
+offset_left = 355.0
+offset_top = 227.0
+offset_right = 491.0
+offset_bottom = 288.0
+pivot_offset = Vector2(66, 28)
 texture_normal = ExtResource("2_u80x2")
+texture_hover = ExtResource("4_kdmts")
 
 [node name="Label" type="Label" parent="TextureRect" unique_id=1128493632]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 12.0
-offset_right = 129.0
-offset_bottom = 55.0
+offset_left = 6.0
+offset_top = 14.0
+offset_right = 132.0
+offset_bottom = 57.0
 text = "START"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="mouse_entered" from="TextureRect" to="." method="_on_texture_rect_mouse_entered"]
 [connection signal="pressed" from="TextureRect" to="." method="_on_texture_rect_pressed"]

@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://wjxdx76cknjt" path="res://assets/strong_arm_icon.png" id="7_dinhu"]
 [ext_resource type="PackedScene" uid="uid://cq6l0fgm2b7d5" path="res://scenes/ability_ui.tscn" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://dgcepy3yf7tqx" path="res://scenes/UI/game_over_panel.tscn" id="10_vtaks"]
+[ext_resource type="PackedScene" uid="uid://dw73vlyue7pql" path="res://scenes/UI/health_ui.tscn" id="11_kvuet"]
 [ext_resource type="AudioStream" uid="uid://b0uj5cawrn1h1" path="res://audio/bg_music.mp3" id="12_dinhu"]
 [ext_resource type="PackedScene" uid="uid://42ymejfvqc8t" path="res://scenes/start.tscn" id="13_kvuet"]
 
@@ -93,6 +94,12 @@ process_mode = 1
 
 [node name="game_over_panel" parent="UI" unique_id=983951085 instance=ExtResource("10_vtaks")]
 visible = false
+
+[node name="HealthUi" parent="UI" unique_id=2078613753 instance=ExtResource("11_kvuet")]
+offset_left = 19.0
+offset_top = 17.0
+offset_right = 19.0
+offset_bottom = 17.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1038882666]
 stream = ExtResource("12_dinhu")
