@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="Ability" format=3 uid="uid://byiiu6cuw178e"]
 
+[ext_resource type="Texture2D" uid="uid://dtalh3i274u2s" path="res://assets/wave_clear_icon.png" id="1_fp5cr"]
 [ext_resource type="Script" uid="uid://dqp6tfrlnt4d5" path="res://resources/ability.gd" id="1_xysp7"]
 
 [resource]
 script = ExtResource("1_xysp7")
 ability_name = "Wave Clear"
-description = "Wave clear description"
+icon = ExtResource("1_fp5cr")
+description = "clears all enemies on the screen"
 metadata/_custom_type_script = "uid://dqp6tfrlnt4d5"

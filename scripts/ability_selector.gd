@@ -11,12 +11,10 @@ var tween_2
 var tween_3
 
 func show_with_tween() -> void:
-	modulate.a = 0.0  # start transparent
+	modulate.a = 0.0
 	show()
+	
 	set_panels_interactive(false)
-	#ability_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	#ability_panel_2.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	#ability_panel_3.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	
 	var tween = create_tween()
@@ -55,10 +53,7 @@ func show_with_tween() -> void:
 	
 	
 	await tween_3.finished
-	#ability_panel.mouse_filter = Control.MOUSE_FILTER_STOP
-	#ability_panel_2.mouse_filter = Control.MOUSE_FILTER_STOP
-	#ability_panel_3.mouse_filter = Control.MOUSE_FILTER_STOP
-	#set_process_input(true)
+
 	set_panels_interactive(true)
 
 
@@ -70,3 +65,10 @@ func set_panels_interactive(enabled: bool) -> void:
 		for child in panel.get_children():
 			if child is Control:
 				child.mouse_filter = filter
+
+
+
+func _hide_abilities() -> void:
+	ability_panel.hide()
+	ability_panel_2.hide()
+	ability_panel_3.hide()

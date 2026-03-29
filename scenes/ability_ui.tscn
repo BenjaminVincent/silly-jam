@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cq6l0fgm2b7d5"]
+
+[ext_resource type="Script" uid="uid://b77460u7tyrxe" path="res://scripts/ability_ui.gd" id="1_kuohi"]
+
+[node name="AbilityUi" type="Control" unique_id=474567130]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+script = ExtResource("1_kuohi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=408575511]
+layout_mode = 0
+offset_left = 17.0
+offset_top = -57.0
+offset_right = 57.0
+offset_bottom = -17.0

@@ -9,13 +9,20 @@ extends CharacterBody2D
 @onready var player_hit: AudioStreamPlayer = $player_hit
 @onready var game_over: AudioStreamPlayer = $game_over
 @onready var game = get_tree().root.get_node("/root/Game")
+@onready var ability_UI = get_tree().root.get_node("/root/Game/UI/AbilityUi")
 
 @export var health = 3
 @export var movement_speed = 50
 @export var fire_rate = 0.2
 @export var off_screen_death_threshold = 32
 
-@export var abilities: Array = []
+@export var abilities: Array[Ability] = []
+
+
+# For abilities
+var stored_base_move_speed
+var ability_1_ready: bool = true
+var ability_2_ready: bool = true
 
 var projectile_speed = 300
 var spawn_pos = global_position
@@ -55,6 +62,70 @@ func get_input():
 		
 		
 	velocity = input_dir.normalized() * movement_speed
+
+
+
+func _input(event):
+	if dead:
+		return
+	if event.is_action_pressed("ability_1") and abilities.size() >= 1 and ability_1_ready:
+		ability_1_ready = false  # block immediately on press
+		use_ability(abilities[0])
+		_start_ability_timers(abilities[0], 1)
+	if event.is_action_pressed("ability_2") and abilities.size() >= 2 and ability_2_ready:
+		ability_2_ready = false  # block immediately on press
+		use_ability(abilities[1])
+		_start_ability_timers(abilities[1], 2)
+
+
+
+
+func use_ability(ability) -> void:
+	match ability.ability_name:
+		"Speed Boost":
+			_speed_boost()
+		"Scatter Shot":
+			_scatter_shot()
+		"Wave Clear":
+			_wave_clear()
+
+
+func _speed_boost() -> void:
+	stored_base_move_speed = movement_speed
+	movement_speed =  (movement_speed * 4.4) + movement_speed
+	print("new movement_speed: ", movement_speed)
+
+func _scatter_shot() -> void:
+	pass
+
+
+func _wave_clear() -> void:
+	pass
+
+
+func _start_ability_timers(ability, slot: int) -> void:
+	# trigger the visual on the button
+	#var ability_UI = get_tree().root.get_node("/root/Game/UI/AbilityUi")
+	var buttons = ability_UI.h_box_container.get_children()
+	if slot - 1 < buttons.size():
+		buttons[slot - 1].start_cooldown(ability.duration, ability.cooldown)
+	
+	await get_tree().create_timer(ability.duration).timeout
+	_end_ability(ability)
+	
+	await get_tree().create_timer(ability.cooldown).timeout
+	if slot == 1:
+		ability_1_ready = true
+	else:
+		ability_2_ready = true
+	print(ability.ability_name, " ready!")
+
+
+
+func _end_ability(ability) -> void:
+	match ability.ability_name:
+		"Speed Boost":
+			movement_speed = stored_base_move_speed  # restore speed
 
 
 
@@ -157,11 +228,22 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				animation_player.play("death")
 		"death":
 			pass
-			
+
+
+
 func _death() -> void:
 	dead = true
 	GlobalStatics.scroll_speed = 0
 	game_over.play()
 	#load("res://scenes/UI/game_over_panel.tscn")
 	print("player has died")
-	
+
+
+
+func add_ability(ability) -> void:
+	abilities.append(ability)
+	#
+	#print("abilities: ", abilities)
+	for a in abilities:
+		print("name: ", a.ability_name)
+	ability_UI.update_abilities(abilities)
