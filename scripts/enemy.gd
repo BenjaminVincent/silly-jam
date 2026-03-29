@@ -7,16 +7,16 @@ extends CharacterBody2D
 
 
 @export var loot_drop: Item
-@export var health = 300
+@export var health = 2
 @export var speed = 30
 @export var drop_chance = 0.5
-
+@export var push_back = 50
 
 var loot
 var player
 var can_take_damage = true
 var follow_delay = 0.05
-
+var dead = false
 
 
 func _ready() -> void:
@@ -41,9 +41,11 @@ func _physics_process(delta):
 	if collision:
 		if collision.get_collider().is_in_group("player"):
 			player.hit_by_enemy = true
-			print("enemy hit player")
-	
-	if player:
+
+	if dead:
+		velocity.y = 0
+		velocity.x = -40 # Speed of the level
+	elif player:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = lerp(velocity, direction * speed, follow_delay)
 	
@@ -68,6 +70,10 @@ func take_damage(value: int) -> void:
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.15).set_trans(Tween.TRANS_BACK)
+	
+	if player:
+		var direction = (player.global_position - global_position).normalized()
+		velocity = -direction * push_back
 
 
 
@@ -78,7 +84,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			if health <= 0:
 				animation_player.play("death")
 				can_take_damage = false
-				velocity.x = -40 # Speed of the level
+				dead = true
+				
 			else:
 				can_take_damage = true
 				animation_player.play("walk_left")
@@ -88,6 +95,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 
 func _death() -> void:
+	
 	
 	if randf() < drop_chance:
 		loot = load("res://scenes/loot.tscn").instantiate()

@@ -9,8 +9,10 @@ extends CharacterBody2D
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 
-@export var health = 2
+@export var health = 3
 @export var movement_speed = 50
+@export var fire_rate = 0.2
+@export var off_screen_death_threshold = 32
 
 var projectile_speed = 300
 var spawn_pos = global_position
@@ -19,6 +21,7 @@ var inventory: Dictionary = {}
 var can_take_damage = true
 var dead: bool = false
 var hit_by_enemy = false
+var shot_ready = true
 
 var level
 
@@ -34,19 +37,20 @@ func _ready() -> void:
 func get_input():
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
+	
 	if dead:
 		velocity = Vector2.ZERO
+		level.scroll_speed = 0
 		return
-	velocity = input_dir * movement_speed
-
-
-
-func _input(event):
-	
-	if dead: return
-	
-	if event.is_action_pressed("shoot"):
+	elif Input.is_action_pressed("shoot") && shot_ready:
 		shoot()
+		shot_ready = false
+		await get_tree().create_timer(fire_rate).timeout
+		await get_tree().process_frame
+		shot_ready = true
+		
+		
+	velocity = input_dir * movement_speed
 
 
 
@@ -67,7 +71,10 @@ func _physics_process(delta):
 	var rect = get_viewport_rect()
 	var bounds = collision_shape_2d.shape.size + buffer
 	
-	global_position = global_position.clamp(rect.position + bounds, rect.end - bounds)
+	global_position = global_position.clamp(rect.end * -1  , rect.end - bounds)
+	
+	if global_position.x < -off_screen_death_threshold:
+		dead = true
 
 
 
@@ -83,6 +90,7 @@ func shoot():
 	var direction = (mouse_pos - global_position).normalized()
 	
 	projectile.velocity = direction * projectile_speed
+	
 
 
 
@@ -122,7 +130,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				set_collision_layer_value(1, true)
 			else:
 				dead = true
-				level.scroll_speed = 0
+				
 				animation_player.play("death")
 		"death":
 			print("player has died")
