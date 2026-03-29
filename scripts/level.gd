@@ -18,7 +18,7 @@ var ability_selector_screen
 func _ready() -> void:
 	randomize()
 	
-	level_one_cell_choords = forground.map_to_local(Vector2i(40, 0)) # 200
+	level_one_cell_choords = forground.map_to_local(Vector2i(400000, 0)) # 200
 	level_one_global_end = forground.to_global(level_one_cell_choords)
 	
 	print("level_one_cell_choords:" , level_one_cell_choords)

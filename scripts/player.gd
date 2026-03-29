@@ -11,7 +11,8 @@ extends CharacterBody2D
 
 @export var health = 3
 @export var movement_speed = 50
-@export var fire_rate = 0.2 
+@export var fire_rate = 0.2
+@export var off_screen_death_threshold = 32
 
 var projectile_speed = 300
 var spawn_pos = global_position
@@ -39,6 +40,7 @@ func get_input():
 	
 	if dead:
 		velocity = Vector2.ZERO
+		level.scroll_speed = 0
 		return
 	elif Input.is_action_pressed("shoot") && shot_ready:
 		shoot()
@@ -69,7 +71,10 @@ func _physics_process(delta):
 	var rect = get_viewport_rect()
 	var bounds = collision_shape_2d.shape.size + buffer
 	
-	global_position = global_position.clamp(rect.position + bounds, rect.end - bounds)
+	global_position = global_position.clamp(rect.end * -1  , rect.end - bounds)
+	
+	if global_position.x < -off_screen_death_threshold:
+		dead = true
 
 
 
@@ -125,7 +130,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				set_collision_layer_value(1, true)
 			else:
 				dead = true
-				level.scroll_speed = 0
+				
 				animation_player.play("death")
 		"death":
 			print("player has died")

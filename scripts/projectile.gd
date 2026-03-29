@@ -6,13 +6,22 @@ extends Node2D
 @onready var area_2d: Area2D = $Area2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
+
+@export var rotation_speed = 20
+
 var velocity: Vector2
 var has_hit: bool = false
 
+var random_spin
+
+func _ready() -> void:
+	random_spin = randf_range(-2, 2)
 
 
 func _process(delta):
 	position += velocity * delta
+	rotation += rotation_speed * delta * random_spin
+
 
 
 

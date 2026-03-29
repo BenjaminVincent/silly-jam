@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://c0jl55v4vpjv8" path="res://scripts/projectile.gd" id="1_q3m7n"]
 [ext_resource type="Texture2D" uid="uid://nax5qc5y6e4p" path="res://assets/tomato.png" id="2_q3m7n"]
-[ext_resource type="AudioStream" uid="uid://bq2qd6gnb8ftl" path="res://audio/projectile_hit_sound.mp3" id="3_softn"]
+[ext_resource type="AudioStream" uid="uid://bo6yhmlthtp5e" path="res://audio/cartoon_splat.mp3" id="3_softn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3m7n"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_softn"]
-random_pitch = 1.0905077
+random_pitch = 1.2240535
+random_volume_offset_db = 1.67
 streams_count = 1
 stream_0/stream = ExtResource("3_softn")
 
