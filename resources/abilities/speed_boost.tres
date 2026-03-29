@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Ability" format=3 uid="uid://buf6qacuqtpux"]
+
+[ext_resource type="Script" uid="uid://dqp6tfrlnt4d5" path="res://resources/ability.gd" id="1_cijna"]
+[ext_resource type="Texture2D" uid="uid://b824cfn0xsh5n" path="res://assets/move_icon.png" id="1_cuymi"]
+
+[resource]
+script = ExtResource("1_cijna")
+ability_name = "Speed Boost"
+icon = ExtResource("1_cuymi")
+description = "Grants a 30% speed boost for 5s"
+metadata/_custom_type_script = "uid://dqp6tfrlnt4d5"

@@ -5,6 +5,9 @@ var tween
 @onready var texture_button: TextureButton = $TextureButton
 @onready var ability_selection_menu = get_tree().root.get_node("/root/Game/UI/AbilitySelector")
 
+@export var ability: Ability
+
+
 func _ready() -> void:
 	pass
 #

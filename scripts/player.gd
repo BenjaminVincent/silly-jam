@@ -76,10 +76,10 @@ func _physics_process(delta):
 			if atlas_coords == end_line_top or atlas_coords == end_line_middle or atlas_coords == end_line_bottom:
 				ability_selector_shown = true
 				get_tree().paused = true
-				game.get_node("UI/AbilitySelector").show()
+				game.get_node("UI/AbilitySelector").show_with_tween()
 				
 		
-		
+	
 		
 		if can_take_damage && (collision && collision.get_collider().is_in_group("enemies") || hit_by_enemy):
 			player_hit.play()
